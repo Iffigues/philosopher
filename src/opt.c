@@ -20,6 +20,7 @@ t_opt *make_opt(int argc, char **argv) {
 	l->ttd = ft_atoi(argv[2]);
 	l->tte = ft_atoi(argv[3]);
 	l->tts = ft_atoi(argv[4]);
+	l->me = 0;
 	if (argc == 6)
 		l->me = ft_atoi(argv[5]);
 	if (opt_verif(l, argc) == 0) {
