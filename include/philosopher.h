@@ -18,7 +18,7 @@ typedef struct s_opt {
 
 t_opt  *make_opt(int argc, char **argv);
 int	ft_atoi(const char *str);
-
+void start(t_opt *opt);
 #if defined(DIR)
 #if DIR == 2
 #include "./p_two.h"

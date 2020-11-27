@@ -9,11 +9,11 @@ typedef struct	s_philosophe {
 	int	state;
 	t_fork	*r_fork;
 	t_fork	*l_fork;
-}		t_philosophes;
+}		t_philosophe;
 
 typedef struct		s_table {
 	t_opt		*opt;
-	t_philosophes	*philosofe;
+	t_philosophe	*philosofe;
 	t_fork		*fork;
 }			t_table;
 
