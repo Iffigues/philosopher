@@ -17,6 +17,25 @@ static int give_fork(t_table *table)
 	return 1;
 }
 
+static  void *philo(void *philo) {
+}
+
+static void start_thread(t_table *table)
+{
+	pthread_t ppid;
+	int i;
+	
+	i = 0;
+	while (i < table->opt->nb)
+	{
+		if (pthread_create(&ppid, NULL, philo, (void*)(&table->philosofe[i])) != 0)
+			return ;
+		pthread_detach(ppid);
+		i++;
+	}
+}
+
 void begin(t_table *table) {
 	give_fork(table);
+	start_thread(table);
 }
