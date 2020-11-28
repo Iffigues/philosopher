@@ -2,7 +2,7 @@
 #define P_ONE_H
 
 typedef struct	s_fork {
-		
+	pthread_mutex_t	mutex;		
 }		t_fork;
 
 typedef struct	s_philosophe {

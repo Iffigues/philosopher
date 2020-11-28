@@ -7,8 +7,10 @@ static t_fork *make_fork(t_opt *opt) {
 	fork = NULL;
 	if (!(fork = (t_fork *)malloc(sizeof(t_fork) * opt->nb)))
 		return NULL;
+	pthread_mutex_init(&fork->mutex, NULL);
 	return fork;
 }
+
 
 
 static t_philosophe *make_philo(t_opt *opt) {
@@ -55,5 +57,6 @@ void start(t_opt *opt) {
 		free(opt);
 		return;
 	}
+	begin(table);
 	free_tables(table);
 }

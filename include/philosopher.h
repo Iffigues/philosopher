@@ -30,4 +30,7 @@ void start(t_opt *opt);
 #else
 #include "./p_one.h"
 #endif
+
+void begin(t_table *table);
+
 #endif
