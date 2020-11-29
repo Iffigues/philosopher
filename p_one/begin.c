@@ -32,15 +32,47 @@ static void take_fork(void *philo)
 {
 }
 
+static void *golang(void *philo)
+{
+}
+
+static int must_die(void *philo)
+{
+	t_philosophe *p;
+	pthread_t ppid;
+
+	p = (t_philosophe *)philo;
+	if (pthread_create(&ppid, NULL, golang, philo) != 0)
+		return 0;
+	pthread_detach(ppid);
+	return 1;
+
+}
+
 static  void *r_philo(void *philo) 
 {
 	t_philosophe *p;
 
 	p = (t_philosophe*)philo;
+	must_die(philo);
+	while (1)
+	{
+		take_rfork(p);
+		unlock_fork(p);
+	}
 }
 
 static void *l_philo(void *philo) 
 {
+	t_philosophe *p;
+
+	p = (t_philosophe*)philo;
+	must_die(philo);
+	while (1)
+	{
+		take_lfork(p);
+		unlock_fork(p);
+	}		
 }
 
 static void *me(void *table)

@@ -16,6 +16,9 @@ typedef struct		s_table {
 	pthread_mutex_t *fork;
 }			t_table;
 
+int take_rfork(t_philosophe *t);
+int take_lfork(t_philosophe *t);
+int unlock_fork(t_philosophe *t);
 
 
 #endif
