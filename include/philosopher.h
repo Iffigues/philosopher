@@ -16,9 +16,11 @@ typedef struct s_opt {
 } t_opt;
 
 
-t_opt  *make_opt(int argc, char **argv);
+t_opt	*make_opt(int argc, char **argv);
 int	ft_atoi(const char *str);
-void start(t_opt *opt);
+void	start(t_opt *opt);
+int	is_peer(int y);
+
 #if defined(DIR)
 #if DIR == 2
 #include "./p_two.h"

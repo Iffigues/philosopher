@@ -1,10 +1,13 @@
 #ifndef P_ONE_H
 #define P_ONE_H
 
+struct s_table;
+
 typedef struct	s_philosophe {
-	int		state;
-	pthread_mutex_t	r_fork;
-	pthread_mutex_t	l_fork;
+	int	state;
+	int	r_fork;
+	int	l_fork;
+	struct	s_table *table;
 }		t_philosophe;
 
 typedef struct		s_table {
