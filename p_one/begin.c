@@ -32,11 +32,15 @@ static void take_fork(void *philo)
 {
 }
 
-static  void *philo(void *philo) 
+static  void *r_philo(void *philo) 
 {
 	t_philosophe *p;
 
 	p = (t_philosophe*)philo;
+}
+
+static void *l_philo(void *philo) 
+{
 }
 
 static void *me(void *table)
@@ -64,10 +68,10 @@ static void start_thread(t_table *table)
 	while (i < table->opt->nb)
 	{
 		if (is_peer(table->philosofe[i].state)) {
-			if (pthread_create(&ppid, NULL, philo, (void*)(&table->philosofe[i])) != 0)
+			if (pthread_create(&ppid, NULL, r_philo, (void*)(&table->philosofe[i])) != 0)
 				return;
 		} else
-			if (pthread_create(&ppid, NULL, philo, ((void*)&table->philosofe[i])) != 0)
+			if (pthread_create(&ppid, NULL, l_philo, ((void*)&table->philosofe[i])) != 0)
 				return;
 		pthread_detach(ppid);
 		i++;
