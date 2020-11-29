@@ -63,9 +63,14 @@ static void start_thread(t_table *table)
 		return;
 	while (i < table->opt->nb)
 	{
-		if (pthread_create(&ppid, NULL, philo, (void*)(&table->philosofe[i++])) != 0)
-			return;
+		if (is_peer(table->philosofe[i].state)) {
+			if (pthread_create(&ppid, NULL, philo, (void*)(&table->philosofe[i])) != 0)
+				return;
+		} else
+			if (pthread_create(&ppid, NULL, philo, ((void*)&table->philosofe[i])) != 0)
+				return;
 		pthread_detach(ppid);
+		i++;
 	}
 }
 
