@@ -19,29 +19,18 @@ static int give_fork(t_table *table)
 	return 1;
 }
 
-static void *one_fork(void *philo)
-{
-
-}
-
-static void *two_fork(void *philo)
-{
-}
-
-static void take_fork(void *philo)
-{
-}
-
 static void *golang(void *philo)
 {
+	t_philosophe *p;
+
+	p = (t_philosophe*)philo;
+	return p;
 }
 
 static int must_die(void *philo)
 {
-	t_philosophe *p;
 	pthread_t ppid;
 
-	p = (t_philosophe *)philo;
 	if (pthread_create(&ppid, NULL, golang, philo) != 0)
 		return 0;
 	pthread_detach(ppid);
@@ -60,6 +49,7 @@ static  void *r_philo(void *philo)
 		take_rfork(p);
 		unlock_fork(p);
 	}
+	return NULL;
 }
 
 static void *l_philo(void *philo) 
@@ -72,11 +62,13 @@ static void *l_philo(void *philo)
 	{
 		take_lfork(p);
 		unlock_fork(p);
-	}		
+	}
+	return NULL;	
 }
 
 static void *me(void *table)
 {
+	return table;
 }
 
 static int must_eat(t_table *table)

@@ -6,6 +6,8 @@
 #include <sys/time.h>
 #include <string.h>
 #include <pthread.h>
+#include <sys/time.h>
+#include <stdio.h>
 
 typedef struct s_opt {
 	int nb;
@@ -16,11 +18,11 @@ typedef struct s_opt {
 } t_opt;
 
 
-t_opt	*make_opt(int argc, char **argv);
-int	ft_atoi(const char *str);
-void	start(t_opt *opt);
-int	is_peer(int y);
-
+t_opt			*make_opt(int argc, char **argv);
+int			ft_atoi(const char *str);
+void			start(t_opt *opt);
+int			is_peer(int y);
+unsigned long long	micros();
 #if defined(DIR)
 #if DIR == 2
 #include "./p_two.h"

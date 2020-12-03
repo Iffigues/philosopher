@@ -1,0 +1,16 @@
+NAME=philo_one
+SRC= $(wildcard *.c)
+OBJ=$(SRC:.c=.o)
+CC=gcc -Wall -Wextra -Werror
+INCLUDE= -I ./
+all:$(NAME)
+$(NAME):$(OBJ)
+	$(CC) $(INCLUDE) $(OBJ) -o $(NAME) -pthread  
+%.o:%.c
+	$(CC) $(INCLUDE) -c $< 
+clean:
+	rm -f *.o
+fclean:clean
+	rm -f $(NAME)
+re:fclean all
+.PHONY:all clean fclean re

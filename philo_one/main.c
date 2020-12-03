@@ -1,4 +1,4 @@
-#include "./include/philosopher.h"
+#include "../include/philosopher.h"
 
 int main(int argc, char **argv) {
 	t_opt *opt;
@@ -9,6 +9,7 @@ int main(int argc, char **argv) {
 		write(1, "bad option", 10);
 		return (1);
 	}
-	start(opt);;
+	micros();
+	start(opt);
 	return (0);
 }
