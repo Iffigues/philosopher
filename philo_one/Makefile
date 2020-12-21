@@ -2,7 +2,7 @@ NAME=philo_one
 SRC= $(wildcard *.c)
 OBJ=$(SRC:.c=.o)
 CC=gcc -Wall -Wextra -Werror
-INCLUDE= -I ./
+INCLUDE= -I ../
 all:$(NAME)
 $(NAME):$(OBJ)
 	$(CC) $(INCLUDE) $(OBJ) -o $(NAME) -pthread  

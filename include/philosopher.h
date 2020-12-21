@@ -15,14 +15,8 @@ typedef struct s_opt {
 	int tte;
 	int tts;
 	int me;
-} t_opt;
+} 	t_opt;
 
-
-t_opt			*make_opt(int argc, char **argv);
-int			ft_atoi(const char *str);
-void			start(t_opt *opt);
-int			is_peer(int y);
-unsigned long long	micros();
 #if defined(DIR)
 #if DIR == 2
 #include "./p_two.h"
@@ -35,6 +29,12 @@ unsigned long long	micros();
 #include "./p_one.h"
 #endif
 
-void begin(t_table *table);
+void			begin(t_table *table);
+t_opt			*make_opt(int argc, char **argv);
+int			ft_atoi(const char *str);
+void			start(t_opt *opt);
+int			is_peer(int y);
+unsigned long long	micros();
+void			message(t_philosophe *e);
 
 #endif
