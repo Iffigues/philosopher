@@ -1,5 +1,4 @@
 #include "../include/philosopher.h"
-#include <stdio.h>
 
 static int opt_verif(t_opt *l, int argc) {
 	if (l->nb <= 0 || l->ttd <= 0 || l->tts <= 0 || l->tte <= 0)

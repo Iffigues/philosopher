@@ -44,7 +44,7 @@ void *r_philo(void *philo)
 void *me(void *table)
 {
 	while (1) {
-	
+			
 	}
 	return table;
 }
@@ -53,8 +53,10 @@ int must_eat(t_table *table)
 {
 	pthread_t ppid;
 
-	if (pthread_create(&ppid, NULL, me, ((void*)table)))
-		return (0);
-	pthread_detach(ppid);
+	if (table->opt->me > 0) {
+		if (pthread_create(&ppid, NULL, me, ((void*)table)))
+			return (0);
+		pthread_detach(ppid);
+	}
 	return (1);
 }

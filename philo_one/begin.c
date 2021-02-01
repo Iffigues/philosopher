@@ -27,29 +27,29 @@ void *golang(void *philo)
 	return p;
 }
 
-static void start_thread(t_table *table)
+static int start_thread(t_table *table)
 {
 	pthread_t ppid;
 	int i;
 	
 	i = 0;
 	if (table->opt->me > 0 && !must_eat(table))
-		return;
+		return (1);
 	while (i < table->opt->nb)
 	{
 		if (is_peer(table->philosofe[i].state)) {
 			if (pthread_create(&ppid, NULL, r_philo, (void*)(&table->philosofe[i])) != 0)
-				return;
+				return (1);
 		} else
 			if (pthread_create(&ppid, NULL, l_philo, ((void*)&table->philosofe[i])) != 0)
-				return;
+				return (1);
 		pthread_detach(ppid);
 		i++;
 	}
+	return (0);
 }
 
-void begin(t_table *table) {
+int begin(t_table *table) {
 	give_fork(table);
-	start_thread(table);
-	while (1);
+	return start_thread(table);
 }

@@ -29,7 +29,7 @@ typedef struct s_opt {
 #include "./p_one.h"
 #endif
 
-void			begin(t_table *table);
+int			begin(t_table *table);
 t_opt			*make_opt(int argc, char **argv);
 int			ft_atoi(const char *str);
 void			start(t_opt *opt);
