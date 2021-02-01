@@ -29,12 +29,12 @@ typedef struct s_opt {
 #include "./p_one.h"
 #endif
 
-int			begin(t_table *table);
-t_opt			*make_opt(int argc, char **argv);
-int			ft_atoi(const char *str);
-void			start(t_opt *opt);
-int			is_peer(int y);
-unsigned long long	micros();
-void			message(t_philosophe *e);
+int					begin(t_table *table);
+t_opt				*make_opt(int argc, char **argv);
+void				await(int i);
+int					ft_atoi(const char *str);
+void				start(t_opt *opt);
+unsigned long long	micros(void);
+void				message(t_philosophe *e);
 
 #endif

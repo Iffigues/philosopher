@@ -4,7 +4,9 @@
 struct				s_table;
 
 typedef struct			s_philosophe {
-	int			state;
+	int					id;
+	int					eat;
+	int 				hand;
 	unsigned long long 	start;
 	unsigned long long	await;
 	int			r_fork;
@@ -23,9 +25,9 @@ typedef struct			s_table {
 int take_rfork(t_philosophe *t);
 int take_lfork(t_philosophe *t);
 int must_eat(t_table *table);
-void *golang(void *philo);
-void *r_philo(void *philo);
-void *l_philo(void *philo);
+void eat(t_philosophe *e);
+void *health(void *philo);
+void *b_philo(void *philo);
 int unlock_fork(t_philosophe *t);
 int free_tables(t_table *table);
 
