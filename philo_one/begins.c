@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:29:52 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/01 13:30:35 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/01 14:37:39 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,22 @@ void *r_philo(void *philo)
 
 void *me(void *table)
 {
-	while (1) {
-			
+	t_table *p;
+	int i;
+	int b;
+
+	p = (t_table*)table;
+	while (1)
+	{
+		i = 0;
+		b = 0;
+		while(i <= p->opt->nb)
+			if (p->philosofe[i++].eat < p->opt->me)
+				b = 1;
+		if (!b)
+		{
+			pthread_mutex_unlock(&p->dead);
+		}
 	}
 	return table;
 }

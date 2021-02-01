@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:39:32 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/01 13:39:34 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/01 14:39:33 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static t_philosophe *make_philo(t_opt *opt) {
 	fork = NULL;
 	if (!(fork = (t_philosophe *)malloc(sizeof(t_philosophe) * opt->nb)))
 		return NULL;
+	fork->eat = 0;
 	return fork;
 }
 
