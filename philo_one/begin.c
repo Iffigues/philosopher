@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:29:40 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/01 14:42:13 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/01 16:34:53 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int give_fork(t_table *table)
 	{
 		table->philosofe[i].table = table;
 		table->philosofe[i].id = i + 1;
+		table->philosofe[i].eat = 0;
+		table->philosofe[i].hand = (i & 1);
 		table->philosofe[i].l_fork = i;
 		if (i == table->opt->nb - 1)
 			table->philosofe[i].r_fork = 0;
@@ -31,7 +33,7 @@ static int give_fork(t_table *table)
 	return 1;
 }
 
-void *golang(void *philo)
+void *health(void *philo)
 {
 	t_philosophe *p;
 
@@ -49,12 +51,8 @@ static int start_thread(t_table *table)
 		return (1);
 	while (i < table->opt->nb)
 	{
-		if (is_peer(table->philosofe[i].id)) {
-			if (pthread_create(&ppid, NULL, r_philo, (void*)(&table->philosofe[i])) != 0)
-				return (1);
-		} else
-			if (pthread_create(&ppid, NULL, l_philo, ((void*)&table->philosofe[i])) != 0)
-				return (1);
+		if (pthread_create(&ppid, NULL, b_philo, (void*)(&table->philosofe[i])) != 0)
+			return (1);
 		pthread_detach(ppid);
 		i++;
 	}
