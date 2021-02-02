@@ -2,10 +2,11 @@ NAME=philo_one
 SRC= $(wildcard *.c)
 OBJ=$(SRC:.c=.o)
 CC=gcc -Wall -Wextra -Werror
+DIR="-DDIR=1"
 INCLUDE= -I ../
 all:$(NAME)
 $(NAME):$(OBJ)
-	$(CC) $(INCLUDE) $(OBJ) -o $(NAME) -pthread  
+	$(CC) $(DIR) $(INCLUDE) $(OBJ) -o $(NAME) -pthread  
 %.o:%.c
 	$(CC) $(INCLUDE) -c $< 
 clean:

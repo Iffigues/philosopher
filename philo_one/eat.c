@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 16:20:39 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/01 17:03:11 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/02 12:42:09 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void eat(t_philosophe *p)
 		take_rfork(p);
 	else
 		take_lfork(p);
+	p->start = micros();
 	await(p->table->opt->tte);
 	unlock_fork(p);
 	p->eat++;
