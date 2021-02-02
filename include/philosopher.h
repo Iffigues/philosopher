@@ -33,8 +33,11 @@ int					begin(t_table *table);
 t_opt				*make_opt(int argc, char **argv);
 void				await(int i);
 int					ft_atoi(const char *str);
+int					ft_strlen(char *b);
 void				start(t_opt *opt);
 unsigned long long	micros(void);
-void				message(t_philosophe *e);
+unsigned long long	addTime(int y);
+void				message(t_philosophe *e, char *b);
+void				m(t_philosophe *e, char *b, int h);
 
 #endif
