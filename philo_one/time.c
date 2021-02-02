@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:23:45 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/01 15:49:59 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/02 13:30:18 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ unsigned long long	micros(void)
 void await(int y)
 {
 	unsigned long long h;
+	unsigned long long j;
 
 	h = micros() + (unsigned long long)y;
+	while (1)
+	{
+		usleep(1);
+		j = micros();
+		if (j >= h)
+			return;
+	}
 }
