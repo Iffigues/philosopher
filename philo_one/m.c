@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   message.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 13:23:45 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/02 14:16:19 by bordenoy         ###   ########.fr       */
+/*   Created: 2021/02/01 13:40:03 by bordenoy          #+#    #+#             */
+/*   Updated: 2021/02/02 16:25:12 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
-#include <unistd.h>
-#include <sys/time.h>
 
-unsigned long long	micros(void)
+static int cInt(int y)
 {
-	struct timeval e;
+	int u;
 
-	gettimeofday(&e, NULL);
-	return ((e.tv_usec) / 1000. + (e.tv_sec) * 1000.);
+	u = 1;
+	while ((y = y/ 10))
+		u++;
+	return (u);
 }
 
-unsigned long long addTime(int y)
-{
-	return (micros() + (unsigned long long) y);
-}
 
-void await(int y)
-{
-	unsigned long long h;
-	unsigned long long j;
 
-	h = micros() + (unsigned long long)y;
-	while (1)
-	{
-		usleep(1);
-		j = micros();
-		if (j >= h)
-			return;
-	}
+void m(t_philosophe *e, char *t, int d)
+{
+	int i;
+	int y;
+	int ee;
+	char *b;
+
+	b = NULL;
+	ee = ft_strlen(t);
+	i = cInt(d);
+	i = i + cInt(e->id);
+	y = 0;
+	if (!(b = (char *)malloc(sizeof(char) * (ee + i + 1))))
+		return;
+	
 }

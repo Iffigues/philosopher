@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:29:40 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/02 12:35:08 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/02 15:31:47 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ static int give_fork(t_table *table)
 void *health(void *philo)
 {
 	t_philosophe *p;
+	unsigned long long y;
 
 	p = (t_philosophe*)philo;
+	while ((y = micros()))
+		if (y >= p->await)
+			pthread_mutex_unlock(&p->table->dead);
 	return p;
 }
 
@@ -51,6 +55,7 @@ static int start_thread(t_table *table)
 	pthread_mutex_lock(&table->dead);
 	if (table->opt->me > 0 && !must_eat(table))
 		return (1);
+	table->start = micros();
 	while (i < table->opt->nb)
 	{
 		if (pthread_create(&ppid, NULL, b_philo, (void*)(&table->philosofe[i])) != 0)

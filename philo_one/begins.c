@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:29:52 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/02 12:35:33 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/02 15:31:14 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,9 @@ void *b_philo(void *philo)
 	t_philosophe *p;
 
 	p = (t_philosophe*)philo;
-	p->start = micros(); 
 	if (!(must_die(philo)))
-	{
 		pthread_mutex_unlock(&p->table->dead);
-	}	
-	while (1)
-	{
-		take_rfork(p);
-		unlock_fork(p);
-	}
+	while (eat(p));
 	return NULL;
 }
 

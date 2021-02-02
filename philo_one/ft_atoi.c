@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:10:13 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/01 14:10:17 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/02 16:15:43 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ int			ft_atoi(const char *str)
 		nbr = (nbr * 10 + *str++ - '0');
 	}
 	return (nbr * s);
+}
+
+int	ft_strlen(char *a)
+{
+	int i;
+
+	i = 0;
+	while (a[i])
+		i++;
+	return (i);
 }
