@@ -39,5 +39,5 @@ unsigned long long	micros(void);
 unsigned long long	addTime(int y);
 void				message(t_philosophe *e, char *b);
 void				m(t_philosophe *e, char *b, int h);
-
+void ft_putnbr(int r);
 #endif

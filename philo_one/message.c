@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
-
+#include <unistd.h>
 void message(t_philosophe *e, char *t)
 {
 	unsigned long long y;
@@ -22,6 +22,10 @@ void message(t_philosophe *e, char *t)
 	pthread_mutex_lock(&e->table->message);
 	y = micros();
 	h = (int)(y - p->table->start);
-	m(e,t,h);
+	ft_putnbr(h);
+	write(1," ",1);
+	ft_putnbr(e->id);
+	printf("%s\n",t);
+	//write(1,"\n",1);
 	pthread_mutex_unlock(&e->table->message);
 }
