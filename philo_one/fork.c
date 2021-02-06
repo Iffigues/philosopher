@@ -12,29 +12,29 @@
 
 #include "../include/philosopher.h"
 
-int take_fork(t_philosophe *t)
+void take_fork(t_philosophe *t)
 {
 	message(t, " taken fork");
 	if (t->hand) {
 		pthread_mutex_lock(&t->table->fork[t->l_fork]);
 		pthread_mutex_lock(&t->table->fork[t->r_fork]);
-		return 1;
+		return ;
 	}
 		pthread_mutex_lock(&t->table->fork[t->r_fork]);
 		pthread_mutex_lock(&t->table->fork[t->l_fork]);
-		return 1;	
+		return ;	
 }
 
-int unlock_fork(t_philosophe *t)
+void unlock_fork(t_philosophe *t)
 {
 	if (t->hand) {
 		pthread_mutex_unlock(&t->table->fork[t->l_fork]);
 		pthread_mutex_unlock(&t->table->fork[t->r_fork]);
-			usleep(t->table->opt->tts * 1000);
-		return 1;
+		usleep(t->table->tts * 1000);
+		return;
 	}
-		pthread_mutex_unlock(&t->table->fork[t->r_fork]);
-		pthread_mutex_unlock(&t->table->fork[t->l_fork]);
-			usleep(t->table->opt->tts * 1000);	
-	return 1;
+	pthread_mutex_unlock(&t->table->fork[t->r_fork]);
+	pthread_mutex_unlock(&t->table->fork[t->l_fork]);
+	usleep(t->table->tts * 1000);	
+	return ;
 }

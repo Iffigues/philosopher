@@ -1,7 +1,10 @@
 #ifndef P_ONE_H
 #define P_ONE_H
 
+struct s_table;
+
 typedef struct			s_philosophe {
+	struct s_table	*table;
 	int					id;
 	int			position;
 	int					eat;
@@ -26,12 +29,12 @@ typedef struct			s_table {
 	int me;
 }				t_table;
 
-int take_fork(t_philosophe *t);
-int must_eat(t_table *table);
+void take_fork(t_philosophe *t);
+int must_eat(t_table table);
 int eat(t_philosophe *e);
 void *health(void *philo);
 void *b_philo(void *philo);
-int unlock_fork(t_philosophe *t);
-int free_tables(t_table *table);
+void unlock_fork(t_philosophe *t);
+int free_tables(t_table table);
 
 #endif

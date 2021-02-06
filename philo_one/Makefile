@@ -1,14 +1,12 @@
 NAME=philo_one
-SRC= $(wildcard *.c)
+SRC= $(wildcard *.c)  ../src/ft_atoi.c ../src/time.c ../src/ft_putnbr.c ../src/message.c
 OBJ=$(SRC:.c=.o)
 CC=gcc -Wall -Wextra -Werror -fsanitize=address
 DIR="-DDIR=1"
 INCLUDE= -I ../
 all:$(NAME)
-$(NAME):$(OBJ)
-	$(CC) $(DIR) $(INCLUDE) $(OBJ) -o $(NAME) -pthread  
-%.o:%.c
-	$(CC) $(INCLUDE) -c $< 
+$(NAME):$(OBJ) 
+	$(CC) $(DIR)  $(OBJ) $(INCLUDE)  -o $(NAME) -pthread  
 clean:
 	rm -f *.o
 fclean:clean

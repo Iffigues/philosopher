@@ -12,7 +12,7 @@
 
 #include "../include/philosopher.h"
 
-static int opt_verif(t_opt *l, int argc) {
+static int opt_verif(t_table *l, int argc) {
 	if (l->nb <= 0 || l->nb > 200|| l->ttd <= 60 || l->tts <= 60 || l->tte <= 60)
 		return 0;
 	if (argc == 6 && l->me <= 0)
@@ -22,7 +22,7 @@ static int opt_verif(t_opt *l, int argc) {
 
 int make_opt(int argc, char **argv, t_table *l) {
 	if (argc == 1 || argc > 6 || argc < 5)
-		return NULL;
+		return 0;
 	l->nb = ft_atoi(argv[1]);
 	l->ttd = ft_atoi(argv[2]);
 	l->tte = ft_atoi(argv[3]);

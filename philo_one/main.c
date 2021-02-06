@@ -16,15 +16,15 @@ static pthread_mutex_t	*make_fork(t_table table) {
 	int i;
 
 	i = 0;
-	if (!(table->fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * table->nb)))
+	if (!(table.fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * table.nb)))
 		return NULL;
-	while (i < opt->nb)
-		if ((pthread_mutex_init(&table->fork[i++], NULL)) != 0)
+	while (i < table.nb)
+		if ((pthread_mutex_init(&table.fork[i++], NULL)) != 0)
 		{
-			free(table->fork);
+			free(table.fork);
 			return NULL;
 		}
-	return table->fork;
+	return table.fork;
 }
 
 
@@ -33,34 +33,33 @@ static t_philosophe *make_philo(t_table table) {
 	t_philosophe *fork;
 
 	fork = NULL;
-	if (!(fork = (t_philosophe *)malloc(sizeof(t_philosophe) * opt->nb)))
+	if (!(fork = (t_philosophe *)malloc(sizeof(t_philosophe) * table.nb)))
 		return NULL;
 	return fork;
 }
 
-static t_table *make_table(t_table table) {
+static int make_table(t_table *table) {
 	int i;
 
-	if (!(table->fork = make_fork(table)))
-		return NULL;
+	if (!(table->fork = make_fork(*table)))
+		return 0;
 	i = pthread_mutex_init(&table->dead, NULL);
-	if (!(table->philosofe = make_philo(table)) || i != 0) {
+	if (!(table->philosofe = make_philo(*table)) || i != 0) {
 		free(table->fork);
-		return NULL;
+		return 0;
 	}
-	return table;
+	return 1;
 }
 
 int main(int argc, char **argv) {
-	t_table *table;
-	
-	if (!(table = make_opt(argc, argv, &table)))
+	t_table table;
+	if (!(make_opt(argc, argv, &table)))
 		return write(1, "bad option", 10) & 1;
-	if (!(table = make_table(table)))
+	if (!(make_table(&table)))
 		return -1;
 	if (begin(table))
 		return 1;
-	pthread_mutex_lock(&table->dead);
-	pthread_mutex_unlock(&table->dead);
+	pthread_mutex_lock(&table.dead);
+	pthread_mutex_unlock(&table.dead);
 	return (free_tables(table));
 }

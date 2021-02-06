@@ -48,8 +48,8 @@ void *me(void *table)
 	{
 		i = 0;
 		b = 0;
-		while(i < p->opt->nb)
-			if (p->philosofe[i++].eat < p->opt->me)
+		while(i < p->nb)
+			if (p->philosofe[i++].eat < p->me)
 				b = 1;
 		if (!b)
 		{
@@ -59,12 +59,12 @@ void *me(void *table)
 	return table;
 }
 
-int must_eat(t_table *table)
+int must_eat(t_table table)
 {
 	pthread_t ppid;
 
-	if (table->opt->me > 0) {
-		if (pthread_create(&ppid, NULL, me, ((void*)table)))
+	if (table.me > 0) {
+		if (pthread_create(&ppid, NULL, me, ((void*)&table)))
 			return (0);
 		pthread_detach(ppid);
 	}

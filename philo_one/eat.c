@@ -16,8 +16,8 @@ int eat(t_philosophe *p)
 {
 	pthread_mutex_lock(&p->w);
 	p->eating = 1;
-	p->await = micros() +  p->table->opt->ttd;
-	usleep(p->table->opt->tte * 1000);
+	p->await = micros() +  p->table->ttd;
+	usleep(p->table->tte * 1000);
 	message(p," eating");
 	p->eating = 0;
 	p->eat++;
