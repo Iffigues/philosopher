@@ -59,11 +59,11 @@ void *me(void *table)
 	return table;
 }
 
-int must_eat(t_table table)
+int must_eat(t_table *table)
 {
 	pthread_t ppid;
 
-	if (table.me > 0) {
+	if (table->me > 0) {
 		if (pthread_create(&ppid, NULL, me, ((void*)&table)))
 			return (0);
 		pthread_detach(ppid);

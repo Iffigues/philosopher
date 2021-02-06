@@ -12,13 +12,13 @@
 
 #include "../include/philosopher.h"
 
-int	free_tables(t_table table)
+int	free_tables(t_table *table)
 {
 	int i;
 	i = 0;
-	while (i < table.nb)
-		pthread_mutex_destroy(&table.fork[i++]);
-	free(table.fork);
-	free(table.philosofe);
+	while (i < table->nb)
+		pthread_mutex_destroy(&table->fork[i++]);
+	free(table->fork);
+	free(table->philosofe);
 	return (0);
 }

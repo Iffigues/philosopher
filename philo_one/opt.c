@@ -21,7 +21,7 @@ static int opt_verif(t_table *l, int argc) {
 }
 
 t_table *make_opt(int argc, char **argv) {
-	t_tables *l;
+	t_table *l;
 
 	if (argc == 1 || argc > 6 || argc < 5)
 		return NULL;
