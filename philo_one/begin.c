@@ -12,7 +12,7 @@
 
 #include "../include/philosopher.h"
 
-static int give_fork(t_table table)
+static int give_fork(t_table *table)
 {
 	int i;
 	i = 0;
@@ -55,7 +55,7 @@ void *health(void *philo)
 	return p;
 }
 
-static int start_thread(t_table table)
+static int start_thread(t_table *table)
 {
 	pthread_t ppid;
 	int i;
@@ -77,11 +77,11 @@ static int start_thread(t_table table)
 	return (0);
 }
 
-int begin(t_table table) {
+int begin(t_table *table) {
 	give_fork(table);
-	for (int i = 0; i < table.nb; i++) {
+/*	for (int i = 0; i < table.nb; i++) {
 		printf("%d %d %d\n",i,table.philosofe[i].l_fork, table.philosofe[i].r_fork);
 	}
-	return 0;
+	return 0;*/
 	return start_thread(table);
 }

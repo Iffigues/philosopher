@@ -20,9 +20,13 @@ static int opt_verif(t_table *l, int argc) {
 	return (1);
 }
 
-int make_opt(int argc, char **argv, t_table *l) {
+t_table *make_opt(int argc, char **argv) {
+	t_tables *l;
+
 	if (argc == 1 || argc > 6 || argc < 5)
-		return 0;
+		return NULL;
+	if (!(l = (t_table*)malloc(sizeof(t_table))))
+		return NULL;
 	l->nb = ft_atoi(argv[1]);
 	l->ttd = ft_atoi(argv[2]);
 	l->tte = ft_atoi(argv[3]);
@@ -31,7 +35,7 @@ int make_opt(int argc, char **argv, t_table *l) {
 	if (argc == 6)
 		l->me = ft_atoi(argv[5]);
 	if (opt_verif(l, argc) == 0) {
-		return 0;
+		return NULL;
 	}
-	return 1;
+	return l;
 }

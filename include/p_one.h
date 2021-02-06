@@ -35,6 +35,6 @@ int eat(t_philosophe *e);
 void *health(void *philo);
 void *b_philo(void *philo);
 void unlock_fork(t_philosophe *t);
-int free_tables(t_table table);
+int free_tables(t_table *table);
 
 #endif

@@ -21,14 +21,14 @@
 #include "./p_one.h"
 #endif
 
-int					begin(t_table table);
-int				make_opt(int argc, char **argv, t_table *e);
-void				await(int i);
-int					ft_atoi(const char *str);
-int					ft_strlen(char *b);
-void				start(t_table table);
+int         begin(t_table *table);
+t_table		*make_opt(int argc, char **argv);
+void		await(int i);
+int		ft_atoi(const char *str);
+int		ft_strlen(char *b);
+void		start(t_table table);
 uint64_t	micros(void);
-void				message(t_philosophe *e, char *b);
-void				m(t_philosophe *e, char *b, int h);
-void ft_putnbr(uint64_t f, int r);
+void		message(t_philosophe *e, char *b);
+void		m(t_philosophe *e, char *b, int h);
+void		ft_putnbr(uint64_t f, int r);
 #endif

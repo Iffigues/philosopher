@@ -9,6 +9,7 @@ $(NAME):$(OBJ)
 	$(CC) $(DIR)  $(OBJ) $(INCLUDE)  -o $(NAME) -pthread  
 clean:
 	rm -f *.o
+	rm -f ../src/*.o
 fclean:clean
 	rm -f $(NAME)
 re:fclean all
