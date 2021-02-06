@@ -14,14 +14,13 @@
 
 int eat(t_philosophe *p)
 {
-	if (p->hand)
-		take_rfork(p);
-	else
-		take_lfork(p);
-	p->await = addTime(p->table->opt->ttd);
-	await(p->table->opt->tte);
-	unlock_fork(p);
+	pthread_mutex_lock(&p->w);
+	p->eating = 1;
+	p->await = micros() +  p->table->opt->ttd;
+	usleep(p->table->opt->tte * 1000);
+	message(p," eating");
+	p->eating = 0;
 	p->eat++;
-	await(p->table->opt->tts);
+	pthread_mutex_unlock(&p->w);
 	return 1;
 }

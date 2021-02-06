@@ -1,29 +1,32 @@
 #ifndef P_ONE_H
 #define P_ONE_H
 
-struct				s_table;
-
 typedef struct			s_philosophe {
 	int					id;
+	int			position;
 	int					eat;
+	int			eating;
 	int 				hand;
-	unsigned long long	await;
+	uint64_t	await;
 	int			r_fork;
+	pthread_mutex_t		w;
 	int			l_fork;
-	struct			s_table *table;
 }				t_philosophe;
 
 typedef struct			s_table {
-	t_opt			*opt;
 	pthread_mutex_t		dead;
 	pthread_mutex_t		message;
-	unsigned long long 	start;
+	uint64_t 	start;
 	t_philosophe		*philosofe;
 	pthread_mutex_t 	*fork;
+	int nb;
+	uint64_t ttd;
+	uint64_t tte;
+	uint64_t tts;
+	int me;
 }				t_table;
 
-int take_rfork(t_philosophe *t);
-int take_lfork(t_philosophe *t);
+int take_fork(t_philosophe *t);
 int must_eat(t_table *table);
 int eat(t_philosophe *e);
 void *health(void *philo);

@@ -14,18 +14,15 @@
 #include <unistd.h>
 void message(t_philosophe *e, char *t)
 {
-	unsigned long long y;
-	int h;
+if (e || t){}
+/*	unsigned long long y;
+	unsigned long long  h;
 	t_philosophe *p;
 
 	p = (t_philosophe*)e;
 	pthread_mutex_lock(&e->table->message);
 	y = micros();
-	h = (int)(y - p->table->start);
-	ft_putnbr(h);
-	write(1," ",1);
-	ft_putnbr(e->id);
-	printf("%s\n",t);
-	//write(1,"\n",1);
+	h = y - p->table->start;
+	printf("%llu %d %s\n",h, e->id, t);
 	pthread_mutex_unlock(&e->table->message);
-}
+*/}

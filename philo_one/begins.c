@@ -29,7 +29,11 @@ void *b_philo(void *philo)
 	p = (t_philosophe*)philo;
 	if (!(must_die(philo)))
 		pthread_mutex_unlock(&p->table->dead);
-	while (eat(p));
+	while (1) {
+		take_fork(p);
+		eat(p);
+		unlock_fork(p);
+	}
 	return NULL;
 }
 
@@ -44,7 +48,7 @@ void *me(void *table)
 	{
 		i = 0;
 		b = 0;
-		while(i <= p->opt->nb)
+		while(i < p->opt->nb)
 			if (p->philosofe[i++].eat < p->opt->me)
 				b = 1;
 		if (!b)
