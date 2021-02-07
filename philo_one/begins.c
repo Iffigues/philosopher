@@ -27,6 +27,7 @@ void *b_philo(void *philo)
 	t_philosophe *p;
 
 	p = (t_philosophe*)philo;
+	p->await = micros() +  p->table->ttd;
 	if (!(must_die(philo)))
 		pthread_mutex_unlock(&p->table->dead);
 	while (1) {

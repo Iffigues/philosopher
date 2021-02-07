@@ -15,8 +15,8 @@
 static int give_fork(t_table *table)
 {
 	int i;
-	i = 0;
 
+	i = 0;
 	while (i < table->nb)
 	{
 		table->philosofe[i].table = table;
@@ -27,10 +27,15 @@ static int give_fork(t_table *table)
 		table->philosofe[i].eating = 0;
 		table->philosofe[i].hand = (i & 1);
 		table->philosofe[i].l_fork = i;
-		if (i == table->nb - 1)
-			table->philosofe[i].r_fork = 0;
-		else
-			table->philosofe[i].r_fork = i + 1;
+		if (table->nb == 1) {
+			table->philosofe[0].r_fork = 0;
+			table->philosofe[0].l_fork = 1;
+		} else {
+			if (i == table->nb - 1)
+				table->philosofe[i].r_fork = 0;
+			else
+				table->philosofe[i].r_fork = i + 1;
+		}
 		i++;
 	}
 	return 1;
@@ -39,13 +44,12 @@ static int give_fork(t_table *table)
 void *health(void *philo)
 {
 	t_philosophe *p;
-	unsigned long long y;
 
 	p = (t_philosophe*)philo;
-	while ((y = micros()))
+	while (1)
  	{
 		pthread_mutex_lock(&p->w);
-		if (y >= p->await && !p->eating) {
+		if (!p->eating && micros() > p->await) {
 			message(p, " dying");		
 			pthread_mutex_unlock(&p->table->dead);
 		}
@@ -79,9 +83,5 @@ static int start_thread(t_table *table)
 
 int begin(t_table *table) {
 	give_fork(table);
-/*	for (int i = 0; i < table.nb; i++) {
-		printf("%d %d %d\n",i,table.philosofe[i].l_fork, table.philosofe[i].r_fork);
-	}
-	return 0;*/
 	return start_thread(table);
 }
