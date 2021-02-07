@@ -30,7 +30,7 @@ typedef struct			s_table {
 }				t_table;
 
 void take_fork(t_philosophe *t);
-int must_eat(t_table table);
+int must_eat(t_table *table);
 int eat(t_philosophe *e);
 void *health(void *philo);
 void *b_philo(void *philo);
