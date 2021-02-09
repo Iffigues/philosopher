@@ -17,11 +17,12 @@ void *b_philo(void *philo)
 	t_philosophe *p;
 
 	p = (t_philosophe*)philo;
-	p->await = micros() +  p->table->ttd;
+	//p->await = micros() +  p->table->ttd;
 	while (1) {
 		take_fork(p);
 		eat(p);
 		unlock_fork(p);
+		message(p, " is thinking");
 	}
 	return NULL;
 }

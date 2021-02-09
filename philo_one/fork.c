@@ -14,7 +14,6 @@
 
 void take_fork(t_philosophe *t)
 {
-	message(t, " is thinking");
 	if (t->hand) {
 		pthread_mutex_lock(&t->table->fork[t->l_fork]);
 		message(t, " taken fork");
