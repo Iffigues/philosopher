@@ -21,6 +21,8 @@ static int give_fork(t_table *table)
 	{
 		table->philosofe[i].table = table;
 		table->philosofe[i].position = i;
+		if (!(table->philosofe[i].le = malloc(sizeof(struct timeval))))
+			return (0);
 		table->philosofe[i].id = i + 1;
 		table->philosofe[i].eat = 0;
 		pthread_mutex_init(&table->philosofe[i].w, NULL);
@@ -41,23 +43,6 @@ static int give_fork(t_table *table)
 	return 1;
 }
 
-void *health(void *philo)
-{
-	t_philosophe *p;
-
-	p = (t_philosophe*)philo;
-	while (1)
- 	{
-		pthread_mutex_lock(&p->w);
-		if (!p->eating && micros() > p->await) {
-			message(p, " dying");		
-			pthread_mutex_unlock(&p->table->dead);
-		}
-		pthread_mutex_unlock(&p->w);
-		usleep(1000);
-	}
-	return p;
-}
 
 static int start_thread(t_table *table)
 {
@@ -67,8 +52,6 @@ static int start_thread(t_table *table)
 	i = 0;
 
 	pthread_mutex_lock(&table->dead);
-	if (table->me > 0 && !must_eat(table))
-		return (1);
 	table->start = micros();
 	while (i < table->nb)
 	{

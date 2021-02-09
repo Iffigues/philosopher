@@ -57,15 +57,30 @@ static int make_table(t_table *table) {
 	return 1;
 }
 
+static t_table  *make_tabler(t_table *table, int argc, char **argv) {
+	if (!(table = (make_opt(argc, argv))))
+	{
+		write(1, "bad option", 10);
+		return NULL;
+	}
+	if (!(make_table(table)))
+		return NULL;
+	
+	if (begin(table))
+		return NULL;
+	return table;
+}
+
 int main(int argc, char **argv) {
 	t_table *table;
 	
-	if (!(table = (make_opt(argc, argv))))
-		return write(1, "bad option", 10) & 1;
-	if (!(make_table(table)))
+	table = NULL;
+	if (!(table = make_tabler(table,argc, argv)))
 		return -1;
-	if (begin(table))
-		return -1;
+	if (table->me)
+		routine_me(table);
+	else
+		routine(table);
 	pthread_mutex_lock(&table->dead);
 	pthread_mutex_unlock(&table->dead);
 	return (free_tables(table));

@@ -14,14 +14,18 @@
 
 void take_fork(t_philosophe *t)
 {
-	message(t, " taken fork");
+	message(t, " is thinking");
 	if (t->hand) {
 		pthread_mutex_lock(&t->table->fork[t->l_fork]);
+		message(t, " taken fork");
 		pthread_mutex_lock(&t->table->fork[t->r_fork]);
+		message(t, " taken fork");
 		return ;
 	}
 		pthread_mutex_lock(&t->table->fork[t->r_fork]);
+		message(t, " taken fork");
 		pthread_mutex_lock(&t->table->fork[t->l_fork]);
+		message(t, " taken fork");
 		return ;	
 }
 
