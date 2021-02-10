@@ -22,7 +22,7 @@ void *b_philo(void *philo)
 		take_fork(p);
 		eat(p);
 		unlock_fork(p);
-		message(p, " is thinking");
+		message(p, " is thinking\n");
 	}
 	return NULL;
 }

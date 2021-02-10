@@ -50,6 +50,7 @@ static int make_table(t_table *table) {
 		return 0;
 	}
 	i = pthread_mutex_init(&table->dead, NULL);
+	i = pthread_mutex_init(&table->message, NULL);
 	if (!(table->philosofe = make_philo(table)) || i != 0) {
 		free(table->fork);
 		return 0;
@@ -77,9 +78,6 @@ int main(int argc, char **argv) {
 	table = NULL;
 	if (!(table = make_tabler(table,argc, argv)))
 		return -1;
-	message(&table->philosofe[1], " eat", 4);
-	message(&table->philosofe[1], " e", 4);
-	return 1;
 	if (table->me)
 		routine_me(table);
 	else

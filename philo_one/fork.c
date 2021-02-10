@@ -16,15 +16,15 @@ void take_fork(t_philosophe *t)
 {
 	if (t->hand) {
 		pthread_mutex_lock(&t->table->fork[t->l_fork]);
-		message(t, " taken fork");
+		message(t, " taken fork\n");
 		pthread_mutex_lock(&t->table->fork[t->r_fork]);
-		message(t, " taken fork");
+		message(t, " taken fork\n");
 		return ;
 	}
 		pthread_mutex_lock(&t->table->fork[t->r_fork]);
-		message(t, " taken fork");
+		message(t, " taken fork\n");
 		pthread_mutex_lock(&t->table->fork[t->l_fork]);
-		message(t, " taken fork");
+		message(t, " taken fork\n");
 		return ;	
 }
 
