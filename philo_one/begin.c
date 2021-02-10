@@ -65,5 +65,6 @@ static int start_thread(t_table *table)
 
 int begin(t_table *table) {
 	give_fork(table);
+	return 0;
 	return start_thread(table);
 }

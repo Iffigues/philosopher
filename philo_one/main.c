@@ -66,8 +66,8 @@ static t_table  *make_tabler(t_table *table, int argc, char **argv) {
 	if (!(make_table(table)))
 		return NULL;
 	
-	//if (begin(table))
-	//	return NULL;
+	if (begin(table))
+		return NULL;
 	return table;
 }
 
@@ -77,8 +77,8 @@ int main(int argc, char **argv) {
 	table = NULL;
 	if (!(table = make_tabler(table,argc, argv)))
 		return -1;
-	int ee = ft_putnbr(table,99,0);
-	printf("%d %s\n",ee,table->b);
+	message(&table->philosofe[1], " eat", 4);
+	message(&table->philosofe[1], " e", 4);
 	return 1;
 	if (table->me)
 		routine_me(table);
