@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
 	table = NULL;
 	if (!(table = make_tabler(table,argc, argv)))
 		return -1;
-	int ee = ft_putnbr(table,21,0);
+	int ee = ft_putnbr(table,99,0);
 	printf("%d %s\n",ee,table->b);
 	return 1;
 	if (table->me)
