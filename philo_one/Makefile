@@ -13,4 +13,8 @@ clean:
 fclean:clean
 	rm -f $(NAME)
 re:fclean all
+push:fclean
+	git add .
+	git commit -m "hello"
+	git push
 .PHONY:all clean fclean re
