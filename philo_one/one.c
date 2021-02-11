@@ -20,5 +20,6 @@ int	free_tables(t_table *table)
 		pthread_mutex_destroy(&table->fork[i++]);
 	free(table->fork);
 	free(table->philosofe);
+	free(table);
 	return (0);
 }
