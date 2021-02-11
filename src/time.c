@@ -19,26 +19,23 @@ uint64_t	micros(void)
 	struct timeval e;
 
 	gettimeofday(&e, NULL);
-	return ((e.tv_sec * (uint64_t)1000) + (e.tv_usec / 1000));
+	//return ((e.tv_sec * (uint64_t)1000) + (e.tv_usec / 1000));
 	return ((e.tv_usec) / 1000. + (e.tv_sec) * 1000.);
 }
 
-/*unsigned long long addTime(int y)
+void await(unsigned int y)
 {
-	return (micros() + (unsigned long long) y);
-}*/
+	struct timeval h;
+	struct timeval j;
 
-void await(int y)
-{
-	unsigned long long h;
-	unsigned long long j;
-
-	h = micros() + (unsigned long long)y;
+	gettimeofday(&h, NULL);
 	while (1)
 	{
 		usleep(50);
-		j = micros();
-		if (j >= h)
-			return;
+		gettimeofday(&j, NULL);
+		if ((size_t)(((size_t)(j.tv_sec - h.tv_sec)) * 1000000 +
+((size_t)(j.tv_usec - h.tv_usec))) > y)
+		return;
 	}
+	return ;
 }

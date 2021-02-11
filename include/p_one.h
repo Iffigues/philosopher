@@ -8,8 +8,8 @@ typedef struct			s_philosophe {
 	int					id;
 	int			position;
 	int					eat;
-	int			eating;
 	int 				hand;
+	struct timeval	*le;
 	uint64_t	await;
 	int			r_fork;
 	pthread_mutex_t		w;
@@ -19,6 +19,8 @@ typedef struct			s_philosophe {
 typedef struct			s_table {
 	pthread_mutex_t		dead;
 	pthread_mutex_t		message;
+	char		b[100];
+
 	uint64_t 	start;
 	t_philosophe		*philosofe;
 	pthread_mutex_t 	*fork;
@@ -36,5 +38,6 @@ void *health(void *philo);
 void *b_philo(void *philo);
 void unlock_fork(t_philosophe *t);
 int free_tables(t_table *table);
-
+void routine_me(t_table *table);
+void routine(t_table *table);
 #endif

@@ -12,17 +12,26 @@
 
 #include "../include/philosopher.h"
 #include <unistd.h>
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
+}
+
 void message(t_philosophe *e, char *t)
 {
-if (e || t){}
-/*	unsigned long long y;
-	unsigned long long  h;
-	t_philosophe *p;
+	int i;
 
-	p = (t_philosophe*)e;
 	pthread_mutex_lock(&e->table->message);
-	y = micros();
-	h = y - p->table->start;
-	printf("%llu %d %s\n",h, e->id, t);
+		i = ft_putnbr(e->table, 0,0);
+		i = ft_addchar(e->table,' ',i);
+		i = ft_putnbr(e->table, e->id, i);
+		i = ft_addStr(e->table, t, i);
+		write(1, e->table->b, i);
 	pthread_mutex_unlock(&e->table->message);
-*/}
+}

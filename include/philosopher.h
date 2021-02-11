@@ -23,12 +23,14 @@
 
 int         begin(t_table *table);
 t_table		*make_opt(int argc, char **argv);
-void		await(int i);
+void		await(unsigned int i);
 int		ft_atoi(const char *str);
 int		ft_strlen(char *b);
-void		start(t_table table);
 uint64_t	micros(void);
+void		start(t_table table);
 void		message(t_philosophe *e, char *b);
 void		m(t_philosophe *e, char *b, int h);
-void		ft_putnbr(uint64_t f, int r);
+int		ft_putnbr(t_table *t, uint64_t f, int r);
+int ft_addchar(t_table *t, char tt, int i);
+int ft_addStr(t_table *t, char *tt, int i);
 #endif
