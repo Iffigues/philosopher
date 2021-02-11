@@ -13,14 +13,33 @@
 #include "../include/philosopher.h"
 #include <unistd.h>
 
-int	ft_strcmp(char *s1, char *s2)
+static int ft_putnbr(t_table *table ,uint64_t n, int fd)
 {
-	int i;
+	int		length;
+	uint64_t nn;
 
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
+	length = 1;
+	nn = n;
+	while ((nn /= 10))
+		length *= 10;
+	while (length != 0)
+	{
+		table->b[fd++] = '0' + (n / length);
+		n = (n % length);
+		length /= 10;
+	}
+	return fd;
+}
+
+static int ft_addchar(t_table *t, char tt, int i){
+	t->b[i] = tt;
+	return i + 1;
+}
+
+static int ft_addStr(t_table *t, char *tt, int i) {
+	while(*tt)
+		t->b[i++] = *tt++;
+	return i;
 }
 
 void message(t_philosophe *e, char *t)

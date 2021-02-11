@@ -1,5 +1,5 @@
 NAME=philo_one
-SRC= $(wildcard *.c)  ../src/ft_atoi.c ../src/time.c ../src/ft_putnbr.c ../src/message.c
+SRC= $(wildcard *.c)  ../src/ft_atoi.c ../src/time.c ../src/message.c
 OBJ=$(SRC:.c=.o)
 CC=gcc -Wall -Wextra -Werror -fsanitize=address
 DIR="-DDIR=1"
