@@ -7,4 +7,8 @@ fclean:
 	make fclean -C philo_one
 re:
 	make re -C philo_one
+push:
+	git add .
+	git commit -m "hello"
+	git push
 .PHONY:all clean fclean re
