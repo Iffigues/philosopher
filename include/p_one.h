@@ -9,8 +9,7 @@ typedef struct			s_philosophe {
 	int			position;
 	int					eat;
 	int 				hand;
-	struct timeval	*le;
-	uint64_t	await;
+	long	await;
 	int			r_fork;
 	pthread_mutex_t		w;
 	int			l_fork;
@@ -40,4 +39,5 @@ void unlock_fork(t_philosophe *t);
 int free_tables(t_table *table);
 void routine_me(t_table *table);
 void routine(t_table *table);
+void take_f(t_philosophe *t);
 #endif

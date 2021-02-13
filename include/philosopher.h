@@ -26,8 +26,8 @@ t_table		*make_opt(int argc, char **argv);
 void		await(unsigned int i);
 int		ft_atoi(const char *str);
 int		ft_strlen(char *b);
-uint64_t	micros(void);
+long	micros(void);
 void		start(t_table table);
-void		message(t_philosophe *e, char *b);
+void		message(t_philosophe *e, char *b, long h);
 void		m(t_philosophe *e, char *b, int h);
 #endif

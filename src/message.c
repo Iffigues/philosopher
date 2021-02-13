@@ -13,10 +13,10 @@
 #include "../include/philosopher.h"
 #include <unistd.h>
 
-static int ft_putnbr(t_table *table ,uint64_t n, int fd)
+static int ft_putnbr(t_table *table , long n, int fd)
 {
-	int		length;
-	uint64_t nn;
+	long		length;
+	long nn;
 
 	length = 1;
 	nn = n;
@@ -42,12 +42,12 @@ static int ft_addStr(t_table *t, char *tt, int i) {
 	return i;
 }
 
-void message(t_philosophe *e, char *t)
+void message(t_philosophe *e, char *t, long h)
 {
 	int i;
 
 	pthread_mutex_lock(&e->table->message);
-		i = ft_putnbr(e->table, 0,0);
+		i = ft_putnbr(e->table, h,0);
 		i = ft_addchar(e->table,' ',i);
 		i = ft_putnbr(e->table, e->id, i);
 		i = ft_addStr(e->table, t, i);

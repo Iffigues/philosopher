@@ -14,12 +14,14 @@
 #include <unistd.h>
 #include <sys/time.h>
 
-uint64_t	micros(void)
+long	micros(void)
 {
 	struct timeval e;
 
 	gettimeofday(&e, NULL);
+	//return e.tv_sec * 1000000 + e.tv_usec;
 	//return ((e.tv_sec * (uint64_t)1000) + (e.tv_usec / 1000));
+	return (e.tv_sec * 1000L + e.tv_usec / 1000L);
 	return ((e.tv_usec) / 1000. + (e.tv_sec) * 1000.);
 }
 
