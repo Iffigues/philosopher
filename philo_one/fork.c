@@ -14,30 +14,37 @@
 
 void take_fork(t_philosophe *t)
 {
-	if (t->hand) {
 		pthread_mutex_lock(&t->table->fork[t->l_fork]);
-		message(t, " taken fork\n");
+		message(t, " has taken a fork\n",micros() - t->table->start);
 		pthread_mutex_lock(&t->table->fork[t->r_fork]);
-		message(t, " taken fork\n");
+		message(t, " has taken a fork\n",micros() - t->table->start);
+		eat(t);
+		pthread_mutex_unlock(&t->table->fork[t->r_fork]);
+	pthread_mutex_unlock(&t->table->fork[t->l_fork]);
+	usleep(t->table->tts);
+	message(t, " is sleeping\n",micros() - t->table->start);
 		return ;
-	}
+}
+
+void take_f(t_philosophe *t)
+{
 		pthread_mutex_lock(&t->table->fork[t->r_fork]);
-		message(t, " taken fork\n");
+		message(t, " has taken a fork\n",micros() - t->table->start);
 		pthread_mutex_lock(&t->table->fork[t->l_fork]);
-		message(t, " taken fork\n");
+		message(t, " has taken a fork\n",micros() - t->table->start);
+		eat(t);
+		pthread_mutex_unlock(&t->table->fork[t->r_fork]);
+	pthread_mutex_unlock(&t->table->fork[t->l_fork]);
+	usleep(t->table->tts);
+	message(t, " is sleeping\n",micros() - t->table->start);
 		return ;	
 }
 
 void unlock_fork(t_philosophe *t)
 {
-	if (t->hand) {
-		pthread_mutex_unlock(&t->table->fork[t->l_fork]);
-		pthread_mutex_unlock(&t->table->fork[t->r_fork]);
-		usleep(t->table->tts * 1000);
-		return;
-	}
 	pthread_mutex_unlock(&t->table->fork[t->r_fork]);
 	pthread_mutex_unlock(&t->table->fork[t->l_fork]);
-	usleep(t->table->tts * 1000);	
+	usleep(t->table->tts);
+	message(t, " is sleeping\n",micros() - t->table->start);
 	return ;
 }

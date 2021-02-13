@@ -15,11 +15,11 @@
 int eat(t_philosophe *p)
 {
 	pthread_mutex_lock(&p->w);
-	message(p, " eating\n");
-	p->eat++;
+	message(p, " is eating\n", micros() - p->table->start);
 	p->await = micros() +  p->table->ttd;
-	//gettimeofday(p->le, NULL);
-	await(p->table->tte * 1000);
 	pthread_mutex_unlock(&p->w);
+	p->eat++;
+	//gettimeofday(p->le, NULL);
+	await(p->table->tte);
 	return 1;
 }

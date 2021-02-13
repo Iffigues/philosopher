@@ -29,8 +29,8 @@ t_table *make_opt(int argc, char **argv) {
 		return NULL;
 	l->nb = ft_atoi(argv[1]);
 	l->ttd = ft_atoi(argv[2]);
-	l->tte = ft_atoi(argv[3]);
-	l->tts = ft_atoi(argv[4]);
+	l->tte = ft_atoi(argv[3]) * 1000;
+	l->tts = ft_atoi(argv[4]) * 1000;
 	l->me = 0;
 	if (argc == 6)
 		l->me = ft_atoi(argv[5]);
