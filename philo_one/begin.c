@@ -24,7 +24,7 @@ static int give_fork(t_table *table)
 		table->philosofe[i].id = i + 1;
 		table->philosofe[i].eat = 0;
 		pthread_mutex_init(&table->philosofe[i].w, NULL);
-		table->philosofe[i].hand = (i & 1);
+		table->philosofe[i].hand = ((i + 1) & 1);
 		table->philosofe[i].l_fork = i;
 		if (table->nb == 1) {
 			table->philosofe[0].r_fork = 0;
