@@ -22,10 +22,12 @@ typedef struct			s_table {
 	t_philosophe		*philosofe;
 	pthread_mutex_t		*fork;
 	int					nb;
-	uint64_t			ttd;
-	uint64_t			tte;
-	uint64_t			tts;
+	long				ttd;
+	long				tte;
+	long				tts;
 	int					me;
+	int					pair_wait;
+	int					last_imp_wait;
 }						t_table;
 
 int start_thread(t_table *table);

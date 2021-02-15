@@ -27,7 +27,7 @@ static int give_fork(t_table *table)
 		table->philosofe[i].l_fork = i;
 		if (table->nb == 1) {
 			table->philosofe[0].r_fork = 0;
-			table->philosofe[0].l_fork = 1;
+			table->philosofe[0].l_fork = 0;
 		} else {
 			if (i == table->nb - 1)
 				table->philosofe[i].r_fork = 0;
@@ -64,9 +64,9 @@ int start_thread(t_table *table)
 	while (i < table->nb)
 	{
 		if (!(table->philosofe[i].id & 1))
-			usleep(50);
+			usleep(table->pair_wait);
 		if (i == (table->nb - 1) && (table->philosofe[i].id & 1))
-			usleep(70);
+			usleep(table->last_imp_wait);
 		if (pthread_create(&ppid, NULL, b_philo, &table->philosofe[i]) != 0)
 			return (1);
 		pthread_detach(ppid);
