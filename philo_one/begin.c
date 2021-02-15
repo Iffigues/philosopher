@@ -45,6 +45,10 @@ void *b_philo(void *philo)
 
 	p = (t_philosophe*)philo;
 	p->await = micros() +  p->table->ttd;
+		if (!(p->id & 1))
+			usleep(50);
+		if (p->id == (p->table->nb - 1) && (p->id & 1))
+			usleep(70);
 	while (1) {
 		take_fork(p);
 		message(p, " is thinking\n",micros() - p->table->start);
@@ -63,10 +67,10 @@ int start_thread(t_table *table)
 	table->start = micros();
 	while (i < table->nb)
 	{
-		if (!(table->philosofe[i].id & 1))
+		/*if (!(table->philosofe[i].id & 1))
 			usleep(50);
 		if (i == (table->nb - 1) && (table->philosofe[i].id & 1))
-			usleep(70);
+			usleep(70);*/
 		if (pthread_create(&ppid, NULL, b_philo, &table->philosofe[i]) != 0)
 			return (1);
 		pthread_detach(ppid);
