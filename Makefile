@@ -11,4 +11,6 @@ push:fclean
 	git add .
 	git commit -m "hello"
 	git push
+pull:fclean
+	git pull
 .PHONY:all clean fclean re
