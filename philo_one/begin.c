@@ -24,7 +24,6 @@ static int give_fork(t_table *table)
 		table->philosofe[i].id = i + 1;
 		table->philosofe[i].eat = 0;
 		pthread_mutex_init(&table->philosofe[i].w, NULL);
-		table->philosofe[i].hand = ((i + 1) & 1);
 		table->philosofe[i].l_fork = i;
 		if (table->nb == 1) {
 			table->philosofe[0].r_fork = 0;
@@ -47,35 +46,31 @@ void *b_philo(void *philo)
 	p = (t_philosophe*)philo;
 	p->await = micros() +  p->table->ttd;
 	while (1) {
-		if(p->hand)
 		take_fork(p);
-		else
-		take_f(p);
 		message(p, " is thinking\n",micros() - p->table->start);
 	}
 	return NULL;
 }
 
-static int start_thread(t_table *table)
+int start_thread(t_table *table)
 {
 	pthread_t ppid;
 	int i;
 
 	i = 0;
+	give_fork(table);
 	pthread_mutex_lock(&table->dead);
 	table->start = micros();
 	while (i < table->nb)
 	{
+		if (!(table->philosofe[i].id & 1))
+			usleep(50);
+		if (i == (table->nb - 1) && (table->philosofe[i].id & 1))
+			usleep(70);
 		if (pthread_create(&ppid, NULL, b_philo, &table->philosofe[i]) != 0)
 			return (1);
 		pthread_detach(ppid);
-		usleep(100);
 		i++;
 	}
 	return (0);
-}
-
-int begin(t_table *table) {
-	give_fork(table);
-	return start_thread(table);
 }

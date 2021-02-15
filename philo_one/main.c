@@ -67,7 +67,7 @@ static t_table  *make_tabler(t_table *table, int argc, char **argv) {
 	if (!(make_table(table)))
 		return NULL;
 	
-	if (begin(table))
+	if (start_thread(table))
 		return NULL;
 	return table;
 }

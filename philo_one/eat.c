@@ -18,7 +18,6 @@ int eat(t_philosophe *p)
 	message(p, " is eating\n", micros() - p->table->start);
 	p->eat++;
 	p->await = micros() +  p->table->ttd;
-	//gettimeofday(p->le, NULL);
 	await(p->table->tte);
 	pthread_mutex_unlock(&p->w);
 	return 1;
