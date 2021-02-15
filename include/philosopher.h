@@ -21,7 +21,7 @@
 #include "./p_one.h"
 #endif
 
-int         begin(t_table *table);
+int start_thread(t_table *table);
 t_table		*make_opt(int argc, char **argv);
 void		await(unsigned int i);
 int		ft_atoi(const char *str);

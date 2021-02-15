@@ -33,7 +33,7 @@ void await(unsigned int y)
 	gettimeofday(&h, NULL);
 	while (1)
 	{
-		usleep(50);
+		usleep(1);
 		gettimeofday(&j, NULL);
 		if ((size_t)(((size_t)(j.tv_sec - h.tv_sec)) * 1000000 +
 ((size_t)(j.tv_usec - h.tv_usec))) > y)
