@@ -12,7 +12,8 @@
 
 #include "../include/philosopher.h"
 
-static void ff(t_table *table, int i) {
+static void	ff(t_table *table, int i)
+{
 	table->philosofe[i].table = table;
 	table->philosofe[i].position = i;
 	table->philosofe[i].id = i + 1;
@@ -43,27 +44,28 @@ static int	give_fork(t_table *table)
 		ff(table, i);
 		i++;
 	}
-	return 1;
+	return (1);
 }
 
-void *b_philo(void *philo)
+void	*b_philo(void *philo)
 {
 	t_philosophe *p;
 
 	p = (t_philosophe*)philo;
-	p->await = micros() +  p->table->ttd;
-	while (p->table->died) {
+	p->await = micros() + p->table->ttd;
+	while (p->table->died)
+	{
 		take_fork(p);
-		message(p, " is thinking\n",micros() - p->table->start);
+		message(p, " is thinking\n", micros() - p->table->start);
 	}
 	p->table->nb--;
-	return NULL;
+	return (NULL);
 }
 
-int start_thread(t_table *table)
+int	start_thread(t_table *table)
 {
-	pthread_t ppid;
-	int i;
+	pthread_t	ppid;
+	int 		i;
 
 	i = 0;
 	give_fork(table);
