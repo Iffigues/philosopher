@@ -7,6 +7,12 @@ static void	dier(t_table *table, int i)
 	pthread_mutex_unlock(&table->dead);
 }
 
+static void 	fully(t_table *table)
+{
+	message(&table->philosofe[0], " full\n", micros() - table->start);
+	pthread_mutex_unlock(&table->dead);
+}
+
 void		routine_me(t_table *table)
 {
 	int i;
@@ -31,8 +37,7 @@ void		routine_me(t_table *table)
 		}
 		if (c)
 		{
-			message(&table->philosofe[0], " full\n", micros() - table->start);
-			pthread_mutex_unlock(&table->dead);
+			fully(table);
 			return ;
 		}
 	}
