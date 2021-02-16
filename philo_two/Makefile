@@ -1,8 +1,8 @@
-NAME=philo_one
+NAME=philo_two
 SRC= $(wildcard *.c)  ../src/ft_atoi.c ../src/time.c ../src/message.c
 OBJ=$(SRC:.c=.o)
 CC=gcc -Wall -Wextra -Werror
-DIR="-DDIR=1"
+DIR="-DDIR=2"
 INCLUDE= -I ../
 all:$(NAME)
 $(NAME):$(OBJ) 
