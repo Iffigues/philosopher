@@ -46,7 +46,7 @@ static int	make_table(t_table *table)
 	if (!(table->fork = make_fork(table)))
 	{
 		free(table);
-		return(0);
+		return (0);
 	}
 	i = pthread_mutex_init(&table->dead, NULL);
 	i = pthread_mutex_init(&table->message, NULL);
@@ -72,13 +72,13 @@ static t_table	*make_tabler(t_table *table, int argc, char **argv)
 	return (table);
 }
 
-int main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_table	*table;
 	int		h;
 
 	table = NULL;
-	if (!(table = make_tabler(table,argc, argv)))
+	if (!(table = make_tabler(table, argc, argv)))
 		return (-1);
 	if (table->me)
 		routine_me(table);
@@ -89,7 +89,7 @@ int main(int argc, char **argv)
 	while (table->nb)
 	{
 		h = 0;
-		while (h < table->ns)	
+		while (h < table->ns)
 			pthread_mutex_unlock(&table->fork[h++]);
 	}
 	return (free_tables(table));
