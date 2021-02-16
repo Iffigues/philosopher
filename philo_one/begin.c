@@ -13,23 +13,24 @@
 #include "../include/philosopher.h"
 
 static void ff(t_table *table, int i) {
-		table->philosofe[i].table = table;
-		table->philosofe[i].position = i;
-		table->philosofe[i].id = i + 1;
-		table->philosofe[i].eat = 0;
-		pthread_mutex_init(&table->philosofe[i].w, NULL);
-		table->philosofe[i].l_fork = i;
-		if (table->nb == 1)
-		{
-			table->philosofe[0].r_fork = 0;
-			table->philosofe[0].l_fork = 0;
-		} else
-		{
-			if (i == table->nb - 1)
-				table->philosofe[i].r_fork = 0;
-			else
-				table->philosofe[i].r_fork = i + 1;
-		}
+	table->philosofe[i].table = table;
+	table->philosofe[i].position = i;
+	table->philosofe[i].id = i + 1;
+	table->philosofe[i].eat = 0;
+	pthread_mutex_init(&table->philosofe[i].w, NULL);
+	table->philosofe[i].l_fork = i;
+	if (table->nb == 1)
+	{
+		table->philosofe[0].r_fork = 0;
+		table->philosofe[0].l_fork = 0;
+	}
+	else
+	{
+		if (i == table->nb - 1)
+			table->philosofe[i].r_fork = 0;
+		else
+			table->philosofe[i].r_fork = i + 1;
+	}
 }
 
 static int	give_fork(t_table *table)
