@@ -14,7 +14,7 @@
 
 static int	opt_verif(t_table *l, int argc)
 {
-	if (l->nb <= 0 || l->nb > 200|| l->ttd <= 60)
+	if (l->nb <= 0 || l->nb > 200 || l->ttd <= 60)
 		return (0);
 	if (l->tts <= 60 || l->tte <= 60)
 		return (0);
@@ -23,7 +23,8 @@ static int	opt_verif(t_table *l, int argc)
 	return (1);
 }
 
-t_table		*make_opt(int argc, char **argv) {
+t_table		*make_opt(int argc, char **argv)
+{
 	t_table *l;
 
 	if (argc == 1 || argc > 6 || argc < 5)
@@ -34,9 +35,9 @@ t_table		*make_opt(int argc, char **argv) {
 	l->ttd = ft_atoi(argv[2]);
 	l->tte = ft_atoi(argv[3]) * 1000;
 	l->pair_wait = ft_atoi(argv[3]) / 2;
-	l->last_imp_wait =  (1.5)*ft_atoi(argv[3]);
+	l->last_imp_wait = (1.5) * ft_atoi(argv[3]);
 	l->died = 1;
-	l->ns = l->nb; 
+	l->ns = l->nb;
 	l->tts = ft_atoi(argv[4]) * 1000;
 	l->me = 0;
 	if (argc == 6)
