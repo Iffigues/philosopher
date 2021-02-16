@@ -15,16 +15,12 @@
 static pthread_mutex_t	*make_fork(t_table *table)
 {
 	int i;
-	int y;
 
-	y = 0;
-	if (table->nb == 1)
-		y++;
 	i = 0;
-	table->fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * table->nb + y);
+	table->fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * table->nb);
 	if (!table->fork)
 		return (NULL);
-	while (i < (table->nb + y))
+	while (i < (table->nb))
 		if ((pthread_mutex_init(&table->fork[i++], NULL)) != 0)
 		{
 			free(table->fork);
