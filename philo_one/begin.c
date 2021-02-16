@@ -47,7 +47,7 @@ static int	give_fork(t_table *table)
 	return (1);
 }
 
-void	*b_philo(void *philo)
+void		*b_philo(void *philo)
 {
 	t_philosophe *p;
 
@@ -62,7 +62,7 @@ void	*b_philo(void *philo)
 	return (NULL);
 }
 
-int	start_thread(t_table *table)
+int			start_thread(t_table *table)
 {
 	pthread_t	ppid;
 	int			i;
