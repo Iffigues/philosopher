@@ -25,10 +25,12 @@ static int	give_fork(t_table *table)
 		table->philosofe[i].eat = 0;
 		pthread_mutex_init(&table->philosofe[i].w, NULL);
 		table->philosofe[i].l_fork = i;
-		if (table->nb == 1){
+		if (table->nb == 1)
+		{
 			table->philosofe[0].r_fork = 0;
 			table->philosofe[0].l_fork = 0;
-		} else {
+		} else
+		{
 			if (i == table->nb - 1)
 				table->philosofe[i].r_fork = 0;
 			else
