@@ -12,13 +12,7 @@
 
 #include "../include/philosopher.h"
 
-static int	give_fork(t_table *table)
-{
-	int i;
-
-	i = 0;
-	while (i < table->nb)
-	{
+static void ff(t_table *table, int i) {
 		table->philosofe[i].table = table;
 		table->philosofe[i].position = i;
 		table->philosofe[i].id = i + 1;
@@ -36,6 +30,16 @@ static int	give_fork(t_table *table)
 			else
 				table->philosofe[i].r_fork = i + 1;
 		}
+}
+
+static int	give_fork(t_table *table)
+{
+	int i;
+
+	i = 0;
+	while (i < table->nb)
+	{
+		ff(table, i);
 		i++;
 	}
 	return 1;
