@@ -65,7 +65,7 @@ void	*b_philo(void *philo)
 int	start_thread(t_table *table)
 {
 	pthread_t	ppid;
-	int 		i;
+	int			i;
 
 	i = 0;
 	give_fork(table);
