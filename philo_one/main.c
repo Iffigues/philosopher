@@ -29,8 +29,6 @@ static pthread_mutex_t	*make_fork(t_table *table)
 	return (table->fork);
 }
 
-
-
 static t_philosophe	*make_philo(t_table *table)
 {
 	t_philosophe *fork;
@@ -38,7 +36,7 @@ static t_philosophe	*make_philo(t_table *table)
 	fork = NULL;
 	if (!(fork = (t_philosophe *)malloc(sizeof(t_philosophe) * table->nb)))
 		return (NULL);
-	return fork;
+	return (fork);
 }
 
 static int	make_table(t_table *table)
@@ -74,7 +72,8 @@ static t_table	*make_tabler(t_table *table, int argc, char **argv)
 	return (table);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 	t_table	*table;
 	int		h;
 
