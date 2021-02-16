@@ -12,13 +12,13 @@
 
 #include "../include/philosopher.h"
 
-int eat(t_philosophe *p)
+int	eat(t_philosophe *p)
 {
 	pthread_mutex_lock(&p->w);
 	message(p, " is eating\n", micros() - p->table->start);
 	p->eat++;
-	p->await = micros() +  p->table->ttd;
+	p->await = micros() + p->table->ttd;
 	await(p->table->tte);
 	pthread_mutex_unlock(&p->w);
-	return 1;
+	return (1);
 }
