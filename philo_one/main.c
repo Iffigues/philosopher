@@ -29,7 +29,7 @@ static pthread_mutex_t	*make_fork(t_table *table)
 	return (table->fork);
 }
 
-static t_philosophe	*make_philo(t_table *table)
+static t_philosophe		*make_philo(t_table *table)
 {
 	t_philosophe *fork;
 
@@ -39,7 +39,7 @@ static t_philosophe	*make_philo(t_table *table)
 	return (fork);
 }
 
-static int	make_table(t_table *table)
+static int				make_table(t_table *table)
 {
 	int i;
 
@@ -58,7 +58,7 @@ static int	make_table(t_table *table)
 	return (1);
 }
 
-static t_table	*make_tabler(t_table *table, int argc, char **argv)
+static t_table			*make_tabler(t_table *table, int argc, char **argv)
 {
 	if (!(table = (make_opt(argc, argv))))
 	{
@@ -72,7 +72,7 @@ static t_table	*make_tabler(t_table *table, int argc, char **argv)
 	return (table);
 }
 
-int				main(int argc, char **argv)
+int						main(int argc, char **argv)
 {
 	t_table	*table;
 	int		h;
