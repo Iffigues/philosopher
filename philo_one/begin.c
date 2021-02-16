@@ -45,10 +45,11 @@ void *b_philo(void *philo)
 
 	p = (t_philosophe*)philo;
 	p->await = micros() +  p->table->ttd;
-	while (1) {
+	while (p->table->died) {
 		take_fork(p);
 		message(p, " is thinking\n",micros() - p->table->start);
 	}
+	p->table->nb--;
 	return NULL;
 }
 

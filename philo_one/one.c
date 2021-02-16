@@ -16,9 +16,13 @@ int	free_tables(t_table *table)
 {
 	int i;
 	i = 0;
-	while (i < table->nb)
-		pthread_mutex_destroy(&table->fork[i++]);
+	while (i < table->ns) {
+		pthread_mutex_destroy(&table->fork[i]);
+		pthread_mutex_destroy(&table->philosofe[i++].w);
+	}
 	free(table->fork);
+	pthread_mutex_destroy(&table->dead);
+	pthread_mutex_destroy(&table->message);
 	free(table->philosofe);
 	free(table);
 	return (0);

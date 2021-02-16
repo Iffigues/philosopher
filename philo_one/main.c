@@ -66,7 +66,6 @@ static t_table  *make_tabler(t_table *table, int argc, char **argv) {
 	}
 	if (!(make_table(table)))
 		return NULL;
-	
 	if (start_thread(table))
 		return NULL;
 	return table;
@@ -84,5 +83,8 @@ int main(int argc, char **argv) {
 		routine(table);
 	pthread_mutex_lock(&table->dead);
 	pthread_mutex_unlock(&table->dead);
+	while (table->nb)
+		if (table->ns == 1)
+			pthread_mutex_unlock(&table->fork[0]);
 	return (free_tables(table));
 }
