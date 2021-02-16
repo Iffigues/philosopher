@@ -23,8 +23,11 @@ void routine_me(t_table *table)
             pthread_mutex_unlock(&table->philosofe[i].w);
             i++;
         }
-        if (c)
-            table->died = 0;
+        if (c) {
+            message(&table->philosofe[0]," full\n", micros() - table->start);
+            pthread_mutex_unlock(&table->dead);
+            return;
+        }
     }
 }
 
