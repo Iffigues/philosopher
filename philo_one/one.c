@@ -15,7 +15,7 @@
 int	free_tables(t_table *table)
 {
 	int i;
-	
+
 	i = 0;
 	while (i < table->ns)
 	{
