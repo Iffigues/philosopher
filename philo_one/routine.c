@@ -1,6 +1,13 @@
 #include "../include/philosopher.h"
 
-void	routine_me(t_table *table)
+static void	dier(t_table *table, int i)
+{
+	message(&table->philosofe[i], " died\n", micros() - table->start);
+	pthread_mutex_unlock(&table->philosofe[i].w);
+	pthread_mutex_unlock(&table->dead);
+}
+
+void		routine_me(t_table *table)
 {
 	int i;
 	int c;
@@ -16,10 +23,8 @@ void	routine_me(t_table *table)
 				c = 0;
 			if (micros() > table->philosofe[i].await)
 			{
-				message(&table->philosofe[i], " died\n", micros() - table->start);
-				pthread_mutex_unlock(&table->philosofe[i].w);
-				pthread_mutex_unlock(&table->dead);
-				return;
+				dier(table, i);
+				return ;
 			}
 			pthread_mutex_unlock(&table->philosofe[i].w);
 			i++;
@@ -28,12 +33,12 @@ void	routine_me(t_table *table)
 		{
 			message(&table->philosofe[0], " full\n", micros() - table->start);
 			pthread_mutex_unlock(&table->dead);
-			return;
+			return ;
 		}
 	}
 }
 
-void	routine(t_table *table)
+void		routine(t_table *table)
 {
 	int i;
 
@@ -45,10 +50,8 @@ void	routine(t_table *table)
 			pthread_mutex_lock(&table->philosofe[i].w);
 			if (micros() > table->philosofe[i].await)
 			{
-				message(&table->philosofe[i], " died\n", micros() - table->start);
-				pthread_mutex_unlock(&table->philosofe[i].w);
-				pthread_mutex_unlock(&table->dead);
-				return;
+				dier(table, i);
+				return ;
 			}
 			pthread_mutex_unlock(&table->philosofe[i].w);
 			i++;
