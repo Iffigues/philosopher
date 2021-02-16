@@ -21,7 +21,7 @@ static pthread_mutex_t	*make_fork(t_table *table)
 	if (table->nb == 1)
 		y++;
 	i = 0;
-	table->fork = pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * table->nb + y);
+	table->fork = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t) * table->nb + y);
 	if (!table->fork)
 		return (NULL);
 	while (i < (table->nb + y))
