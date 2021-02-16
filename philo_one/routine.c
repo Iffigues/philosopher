@@ -7,7 +7,7 @@ static void	dier(t_table *table, int i)
 	pthread_mutex_unlock(&table->dead);
 }
 
-static void 	fully(t_table *table)
+static void	fully(t_table *table)
 {
 	message(&table->philosofe[0], " full\n", micros() - table->start);
 	pthread_mutex_unlock(&table->dead);
@@ -28,18 +28,12 @@ void		routine_me(t_table *table)
 			if (table->philosofe[i].eat < table->me)
 				c = 0;
 			if (micros() > table->philosofe[i].await)
-			{
-				dier(table, i);
-				return ;
-			}
+				return (dier(table, i));
 			pthread_mutex_unlock(&table->philosofe[i].w);
 			i++;
 		}
 		if (c)
-		{
-			fully(table);
-			return ;
-		}
+			return (fully(table));
 	}
 }
 
@@ -54,10 +48,7 @@ void		routine(t_table *table)
 		{
 			pthread_mutex_lock(&table->philosofe[i].w);
 			if (micros() > table->philosofe[i].await)
-			{
-				dier(table, i);
-				return ;
-			}
+				return (dier(table, i));
 			pthread_mutex_unlock(&table->philosofe[i].w);
 			i++;
 		}
