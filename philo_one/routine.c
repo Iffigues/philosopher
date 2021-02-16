@@ -16,7 +16,6 @@ void routine_me(t_table *table)
                 c = 0;
             if (micros() > table->philosofe[i].await) {
                     message(&table->philosofe[i]," died\n", micros() - table->start);
-                    table->died = 0;
                     pthread_mutex_unlock(&table->philosofe[i].w);
                     pthread_mutex_unlock(&table->dead);
                     return;
@@ -40,7 +39,6 @@ void routine(t_table *table)
             pthread_mutex_lock(&table->philosofe[i].w);
             if (micros() > table->philosofe[i].await) {
                     message(&table->philosofe[i]," died\n", micros() - table->start);
-                    table->died = 0;
                     pthread_mutex_unlock(&table->philosofe[i].w);
                     pthread_mutex_unlock(&table->dead);
                     return;

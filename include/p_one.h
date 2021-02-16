@@ -17,11 +17,13 @@ typedef struct		s_philosophe {
 typedef struct			s_table {
 	pthread_mutex_t		dead;
 	pthread_mutex_t		message;
+	int					died;
 	char				b[100];
 	long				start;
 	t_philosophe		*philosofe;
 	pthread_mutex_t		*fork;
 	int					nb;
+	int ns;
 	long				ttd;
 	long				tte;
 	long				tts;

@@ -47,10 +47,14 @@ void message(t_philosophe *e, char *t, long h)
 	int i;
 
 	pthread_mutex_lock(&e->table->message);
-		i = ft_putnbr(e->table, h,0);
-		i = ft_addchar(e->table,' ',i);
-		i = ft_putnbr(e->table, e->id, i);
-		i = ft_addStr(e->table, t, i);
-		write(1, e->table->b, i);
+		if (e->table->died) {
+			i = ft_putnbr(e->table, h,0);
+			i = ft_addchar(e->table,' ',i);
+			i = ft_putnbr(e->table, e->id, i);
+			i = ft_addStr(e->table, t, i);
+			write(1, e->table->b, i);
+			if (t[1] == 'd' || t[1] == 'f')
+				e->table->died = 0;
+		}
 	pthread_mutex_unlock(&e->table->message);
 }
