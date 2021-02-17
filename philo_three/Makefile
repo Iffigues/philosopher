@@ -1,12 +1,11 @@
 NAME=philo_three
 SRC= $(wildcard *.c)  ../src/ft_atoi.c ../src/time.c ../src/message.c
 OBJ=$(SRC:.c=.o)
-CC=gcc -Wall -Wextra -Werror
-DIR="-DDIR=3"
+CC=gcc -DDIR=3 -Wall -Wextra -Werror
 INCLUDE= -I ../
 all:$(NAME)
 $(NAME):$(OBJ) 
-	$(CC) $(DIR)  $(OBJ) $(INCLUDE)  -o $(NAME) -pthread  
+	$(CC) $(OBJ) $(INCLUDE)  -o $(NAME) -pthread  
 clean:
 	rm -f *.o
 	rm -f ../src/*.o

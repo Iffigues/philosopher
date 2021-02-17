@@ -5,23 +5,24 @@
 #include <sys/stat.h>
 #include <semaphore.h>
 
+
 typedef struct		s_philosophe {
 	struct s_table	*table;
 	int				id;
 	int				position;
 	int				eat;
 	long			await;
-	sem_t		w;
+	sem_t           w;
 }					t_philosophe;
 
 typedef struct			s_table {
 	sem_t			dead;
 	sem_t			message;
+    sem_t           *fork;
 	int					died;
 	char				b[100];
 	long				start;
 	t_philosophe		*philosofe;
-	sem_t			*fork;
 	int					nb;
 	int ns;
 	long				ttd;
