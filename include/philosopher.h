@@ -10,10 +10,6 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <semaphore.h>
-
 #if defined(DIR)
 #if DIR == 2
 #include "./p_two.h"
@@ -33,6 +29,6 @@ int		ft_atoi(const char *str);
 int		ft_strlen(char *b);
 long	micros(void);
 void		start(t_table table);
-void		message(t_philosophe *e, char *b, long h);
 void		m(t_philosophe *e, char *b, int h);
+char			*ft_itoa(int n);
 #endif

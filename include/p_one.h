@@ -42,4 +42,5 @@ void unlock_fork(t_philosophe *t);
 int free_tables(t_table *table);
 void routine_me(t_table *table);
 void routine(t_table *table);
+void		message(t_philosophe *e, char *b, long h);
 #endif

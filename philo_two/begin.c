@@ -5,10 +5,10 @@ void *b_philo(void *philo)
 	t_philosophe *p;
 
 	p = (t_philosophe*)philo;
-	p->await = micros() +  p->table->ttd;
+	/*p->await = micros() +  p->table->ttd;
 	while (p->table->died) {
 	}
-	p->table->nb--;
+	p->table->nb--;*/
 	return NULL;
 }
 

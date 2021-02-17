@@ -9,15 +9,16 @@
 typedef struct		s_philosophe {
 	struct s_table	*table;
 	int				id;
+    char            *sem_name;
 	int				position;
 	int				eat;
 	long			await;
-	sem_t           w;
+	sem_t           *w;
 }					t_philosophe;
 
 typedef struct			s_table {
-	sem_t			dead;
-	sem_t			message;
+	sem_t			*dead;
+	sem_t			*message;
     sem_t           *fork;
 	int					died;
 	char				b[100];
@@ -33,5 +34,6 @@ typedef struct			s_table {
 	int					last_imp_wait;
 }						t_table;
 
+void		messagem(t_philosophe *e, char *b, long h);
 
 #endif
