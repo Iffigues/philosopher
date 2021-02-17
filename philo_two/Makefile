@@ -1,7 +1,7 @@
 NAME=philo_two
 SRC= $(wildcard *.c)  ../src/ft_atoi.c ../src/time.c ../src/messagem.c
 OBJ=$(SRC:.c=.o)
-CC=gcc -DDIR=2 -Wall -Wextra -Werror
+CC=gcc -DDIR=2 -fsanitize=address -Wall -Wextra -Werror
 INCLUDE= -I ../
 all:$(NAME)
 $(NAME):$(OBJ) 

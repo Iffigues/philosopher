@@ -42,7 +42,7 @@ static int ft_addStr(t_table *t, char *tt, int i) {
 	return i;
 }
 
-void messagem(t_philosophe *e, char *t, long h)
+void message(t_philosophe *e, char *t, long h)
 {
 	int i;
 

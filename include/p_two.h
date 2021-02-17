@@ -34,6 +34,8 @@ typedef struct			s_table {
 	int					last_imp_wait;
 }						t_table;
 
-void		messagem(t_philosophe *e, char *b, long h);
-
+void		message(t_philosophe *e, char *b, long h);
+void take_fork(t_philosophe *t);
+void		routine(t_table *table);
+void		routine_me(t_table *table);
 #endif
