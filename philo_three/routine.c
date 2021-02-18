@@ -23,7 +23,6 @@ void		*routines(void *pp)
     while (1) {
         sem_wait(p->w);
 	    if (micros() > p->await) {
-            printf("dead\n");
 	        dier(p);
              sem_post(p->w);
             return NULL;
