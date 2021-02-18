@@ -1,27 +1,45 @@
-#ifndef P_THREE_H
-#define P_THREE_H
+#ifndef P_TWO_H
+#define P_TWO_H
 
-#include <fcntl.h>           /* Pour les constantes O_* */
-#include <sys/stat.h>        /* Pour les constantes « mode » */
+#include <fcntl.h>
+#include <sys/stat.h>
 #include <semaphore.h>
-#include <sys/types.h>
-#include <signal.h>
-
-typedef struct	s_fork {
-		
-}		t_fork;
-
-typedef struct	s_philosophe {
-	int	state;
-	t_fork	*r_fork;
-	t_fork	*l_fork;
-}		t_philosophes;
-
-typedef struct		s_table {
-	t_philosophes	*philosofe;
-	t_fork		*fork;
-}			t_table;
+# include <signal.h>
 
 
+typedef struct		s_philosophe {
+	struct s_table	*table;
+	int				id;
+    char            *sem_name;
+	int				position;
+	int				eat;
+	long			await;
+    pid_t			pid;
+	sem_t           *w;
+}					t_philosophe;
 
+typedef struct			s_table {
+	sem_t			    *dead;
+	sem_t			    *message;
+    sem_t               *fork;
+    sem_t               *eat;
+	int					died;
+	char				b[100];
+	long				start;
+	t_philosophe		*philosofe;
+	int					nb;
+	int ns;
+	long				ttd;
+	long				tte;
+	long				tts;
+	int					me;
+	int					pair_wait;
+	int					last_imp_wait;
+}						t_table;
+
+void		message(t_philosophe *e, char *b, long h);
+void take_fork(t_philosophe *t);
+void		routine(t_table *table);
+void		routine_me(t_table *table);
+void		*routines(void *p);
 #endif
