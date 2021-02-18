@@ -6,13 +6,6 @@ static void	dier(t_philosophe *table)
 	sem_post(table->w);
 	sem_post(table->table->dead);
 }
-/*
-static void	fully(t_philosophe *table)
-{
-	message(table, " full\n", micros() - table->table->start);
-	sem_post(table->table->dead);
-}
-*/
 
 void		*routines(void *pp)
 {

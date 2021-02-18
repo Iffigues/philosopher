@@ -3,11 +3,6 @@
 int b_philo(t_philosophe *p)
 {
     pthread_t ppid;
-
-    if (!(p->id & 1))
-			    usleep(p->table->pair_wait);
-	    if (p->id == (p->table->nb) && (p->id & 1))
-		    	usleep(p->table->last_imp_wait);
     if (pthread_create(&ppid, NULL, routines, p) != 0)
 			    return (1);
 		pthread_detach(ppid);
@@ -29,6 +24,10 @@ int start_thread(t_table *table)
 	table->start = micros();
 	while (i < table->nb)
 	{
+        if (!(table->philosofe[i].id & 1))
+			usleep(table->pair_wait);
+		if (i == (table->nb - 1) && (table->philosofe[i].id & 1))
+			usleep(table->last_imp_wait);
         table->philosofe[i].pid = fork();
         if (table->philosofe[i].pid == 0) {
  		    b_philo(&table->philosofe[i]);
