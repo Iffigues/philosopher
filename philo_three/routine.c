@@ -19,6 +19,7 @@ void		*routines(void *pp)
     t_philosophe *p;
     p = (t_philosophe*)pp;
     
+    p->await = micros() +  p->table->ttd;
     while (1) {
         sem_wait(p->w);
 	    if (micros() > p->await) {
