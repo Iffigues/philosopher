@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosopher.h"
+#include "../../include/philosopher.h"
 #include <unistd.h>
 #include <sys/time.h>
 

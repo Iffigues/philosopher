@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosopher.h"
+#include "../../include/philosopher.h"
 #include <unistd.h>
 
 static int ft_putnbr(t_table *table , long n, int fd)
@@ -46,7 +46,7 @@ void message(t_philosophe *e, char *t, long h)
 {
 	int i;
 
-	pthread_mutex_lock(&e->table->message);
+	sem_wait(e->table->message);
 		if (e->table->died) {
 			i = ft_putnbr(e->table, h,0);
 			i = ft_addchar(e->table,' ',i);
@@ -54,7 +54,7 @@ void message(t_philosophe *e, char *t, long h)
 			i = ft_addStr(e->table, t, i);
 			write(1, e->table->b, i);
 			if (t[1] == 'd' || t[1] == 'f')
-				e->table->died = 0;
+				return ;
 		}
-	pthread_mutex_unlock(&e->table->message);
+	sem_post(e->table->message);
 }

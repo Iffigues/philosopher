@@ -1,5 +1,5 @@
 NAME=philo_one
-SRC= $(wildcard *.c)  ../src/ft_atoi.c ../src/time.c ../src/message.c
+SRC= $(wildcard *.c)  ../src/srco/ft_atoi.c ../src/srco/time.c ../src/srco/message.c
 OBJ=$(SRC:.c=.o)
 CC=gcc -Wall -Wextra -Werror
 DIR="-DDIR=1"
@@ -9,7 +9,7 @@ $(NAME):$(OBJ)
 	$(CC) $(DIR)  $(OBJ) $(INCLUDE)  -o $(NAME) -pthread  
 clean:
 	rm -f *.o
-	rm -f ../src/*.o
+	rm -f ../src/srco/*.o
 fclean:clean
 	rm -f $(NAME)
 re:fclean all
