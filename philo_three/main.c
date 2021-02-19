@@ -128,7 +128,11 @@ int						main(int argc, char **argv)
 	table = NULL;
 	if (!(table = make_tabler(table, argc, argv)))
 		return (-1);
-	sem_wait(table->dead);
+    h = 0;
+    while (h < table->ns) {
+       sem_post(table->philosofe[h++].w);
+    }
+    sem_wait(table->dead);
 	sem_post(table->dead);
     h = 0;
     while (h < table->ns) {

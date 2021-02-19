@@ -4,7 +4,9 @@ int b_philo(t_philosophe *p)
 {
     pthread_t ppid;
 
-     if (!(p->id & 1))
+    sem_wait(p->w);
+    sem_post(p->w);
+    if (!(p->id & 1))
 			await(p->table->pair_wait);
 		if (p->id == (p->table->nb) && (p->id & 1))
 			await(p->table->last_imp_wait);
@@ -32,6 +34,7 @@ int start_thread(t_table *table)
 	{
         table->philosofe[i].pid = fork();
         if (table->philosofe[i].pid == 0) {
+            sem_wait(table->philosofe[i].w);
  		    b_philo(&table->philosofe[i]);
             exit(0);
         }
