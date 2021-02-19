@@ -16,6 +16,7 @@ typedef struct		s_philosophe {
 	long			await;
     pid_t			pid;
 	sem_t           *w;
+sem_t           *start;
 }					t_philosophe;
 
 typedef struct			s_table {
