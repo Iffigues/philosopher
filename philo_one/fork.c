@@ -26,6 +26,6 @@ void	take_fork(t_philosophe *t)
 	pthread_mutex_unlock(&t->w);
 	pthread_mutex_unlock(&t->table->fork[t->r_fork]);
 	pthread_mutex_unlock(&t->table->fork[t->l_fork]);
-	usleep(t->table->tts);
+	await(t->table->tts);
 	message(t, " is sleeping\n", micros() - t->table->start);
 }

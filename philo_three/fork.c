@@ -26,6 +26,6 @@ void	take_fork(t_philosophe *t)
 	sem_post(t->w);
 	sem_post(t->table->fork);
 	sem_post(t->table->fork);
-	usleep(t->table->tts);
+	await(t->table->tts);
 	message(t, " is sleeping\n", micros() - t->table->start);
 }
