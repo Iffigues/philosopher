@@ -17,7 +17,7 @@ void		*routines(void *pp)
         sem_wait(p->w);
 	    if (micros() > p->await) {
 	        dier(p);
-             sem_post(p->w);
+            sem_post(p->w);
             return NULL;
         }
 		sem_post(p->w);

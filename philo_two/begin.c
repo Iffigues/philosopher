@@ -5,11 +5,11 @@ void *b_philo(void *philo)
 	t_philosophe *p;
 
 	p = (t_philosophe*)philo;
+p->await = micros() +  p->table->ttd;
     if (!(p->id & 1))
 			usleep(p->table->pair_wait);
 		if (p->id == (p->table->nb) && (p->id & 1))
 			usleep(p->table->last_imp_wait);
-	p->await = micros() +  p->table->ttd;
 	while (p->table->died) {
         take_fork(p);
 		message(p, " is thinking\n", micros() - p->table->start);
