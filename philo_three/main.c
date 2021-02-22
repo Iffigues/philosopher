@@ -82,7 +82,7 @@ static t_philosophe		*make_philo(t_table *table)
             }
         }
         sem_unlink(fork[i].sem_name);
-         fork[i].w = sem_open(fork[i].sem_name, O_CREAT | O_EXCL, 0644,1);
+        fork[i].w = sem_open(fork[i].sem_name, O_CREAT | O_EXCL, 0644,1);
         fork[i].sem_name[0] = 't';
         sem_unlink(fork[i].sem_name);
         fork[i].start = sem_open(fork[i].sem_name, O_CREAT | O_EXCL, 0644,1);
@@ -133,7 +133,11 @@ int						main(int argc, char **argv)
 		return (-1);
     h = 0;
     while (h < table->ns) {
-      sem_post(table->philosofe[h++].start);
+        if (!(table->philosofe[h].id & 1))
+			await(table->pair_wait);
+	    if (table->philosofe[h].id == (table->nb) && (table->philosofe[h].id & 1))
+		    await(table->last_imp_wait);
+       sem_post(table->philosofe[h++].start);
     }
     sem_wait(table->dead);
 	sem_post(table->dead);

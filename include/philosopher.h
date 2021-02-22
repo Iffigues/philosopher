@@ -9,6 +9,10 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <semaphore.h>
+# include <signal.h>
 
 #if defined(DIR)
 #if DIR == 2

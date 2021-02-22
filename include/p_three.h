@@ -1,12 +1,6 @@
 #ifndef P_TWO_H
 #define P_TWO_H
 
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <semaphore.h>
-# include <signal.h>
-
-
 typedef struct		s_philosophe {
 	struct s_table	*table;
 	int				id;
