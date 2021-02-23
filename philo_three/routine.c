@@ -16,8 +16,9 @@ void		*routines(void *pp)
     p->await = micros() +  p->table->ttd;
     while (1) {
         sem_wait(p->w);
-	    if (micros() > p->await)
+	    if (micros() > p->await) {
 	        return dier(p);
+        }
 		sem_post(p->w);
     }
     return NULL;
