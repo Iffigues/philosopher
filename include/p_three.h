@@ -13,7 +13,8 @@ typedef struct		s_philosophe {
 sem_t           *start;
 }					t_philosophe;
 
-typedef struct			s_table {
+typedef struct			s_table
+{
 	sem_t			    *dead;
 	sem_t			    *message;
     sem_t               *fork;
@@ -23,7 +24,6 @@ typedef struct			s_table {
 	long				start;
 	t_philosophe		*philosofe;
 	int					nb;
-	int ns;
 	long				ttd;
 	long				tte;
 	long				tts;
