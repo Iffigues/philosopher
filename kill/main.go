@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"regexp"
@@ -19,9 +20,12 @@ func main() {
 			kl := space.ReplaceAllString(ll, " ")
 			kk := strings.Split(kl, " ")
 			if kk[4] == mui {
-				b, _ := strconv.Atoi(kk[0])
-				e, _ := os.FindProcess(b)
-				e.Kill()
+
+				b, err := strconv.Atoi(kk[0])
+				fmt.Println(err)
+				e, ip := os.FindProcess(b)
+				fmt.Println(ip)
+				fmt.Println(e.Kill())
 			}
 		}
 	}
