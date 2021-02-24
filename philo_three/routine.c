@@ -20,6 +20,7 @@ void		*routines(void *pp)
 	        return dier(p);
         }
 		sem_post(p->w);
+        //usleep(1000);
     }
     return NULL;
 }
