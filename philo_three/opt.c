@@ -35,7 +35,7 @@ t_table		*make_opt(int argc, char **argv)
 	l->ttd = ft_atoi(argv[2]);
 	l->tte = ft_atoi(argv[3]) * 1000;
 	l->pair_wait = ft_atoi(argv[3]) / 2;
-	l->last_imp_wait = (1) * ft_atoi(argv[3]);
+	l->last_imp_wait = (1.5) * ft_atoi(argv[3]);
 	l->died = 1;
 	l->tts = ft_atoi(argv[4]) * 1000;
 	l->me = 0;

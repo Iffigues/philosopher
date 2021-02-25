@@ -128,8 +128,18 @@ int						main(int argc, char **argv)
 	table = NULL;
 	if (!(table = make_tabler(table, argc, argv)))
 		return (-1);
-    sem_wait(table->dead);
-	sem_post(table->dead);
+
+    h = 0;
+    if (table->me) {
+    
+        while (h < table->nb) {
+            sem_wait(table->eat);
+            h++;
+        }
+        sem_post(table->dead);
+    }
+        sem_wait(table->dead);
+	    sem_post(table->dead);
     h = 0;
     while (h < table->nb) {
         kill(table->philosofe[h++].pid, SIGKILL);
