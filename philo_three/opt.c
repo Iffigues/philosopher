@@ -42,7 +42,8 @@ t_table		*make_opt(int argc, char **argv)
 	if (argc == 6)
     {
 		l->me = ft_atoi(argv[5]);
-        l->eat = sem_open("eater", O_CREAT | O_EXCL, 0644,l->nb);
+        sem_unlink("eat");
+        l->eat = sem_open("eat", O_CREAT | O_EXCL, 0644,l->nb);
     }
 	if (opt_verif(l, argc) == 0)
 		return (NULL);

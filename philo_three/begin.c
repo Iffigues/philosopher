@@ -37,8 +37,9 @@ int start_thread(t_table *table)
 	while (i < table->nb)
 	{
         p = (t_philosophe*)&table->philosofe[i];
- 		if (table->me)
+ 		if (table->me) {
             sem_wait(table->eat);
+         }
         b_philo(p);
 		i++;
 	}

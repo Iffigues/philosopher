@@ -23,6 +23,7 @@ static sem_t	*make_fork(t_table *table)
 	if (!table->dead)
 		return (NULL);
 
+
     sem_unlink("message");
     table->message = sem_open("message", O_CREAT | O_EXCL, 0644,1);
 	if (!table->message)
@@ -130,8 +131,7 @@ int						main(int argc, char **argv)
 		return (-1);
 
     h = 0;
-    if (table->me) {
-    
+    if (table->me) {    
         while (h < table->nb) {
             sem_wait(table->eat);
             h++;

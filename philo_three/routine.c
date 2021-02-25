@@ -7,7 +7,7 @@ static void	*dier(t_philosophe *table)
     i = 0;
     if (table->table->me)
     while (i < table->table->nb) {
-        sem_post(table->table->eat);
+        //sem_post(table->table->eat);
         i++;
     }
     table->table->died = 0;
@@ -27,7 +27,7 @@ void		*routines(void *pp)
     while (p->table->died) {
         sem_wait(p->w);
 	    if (micros() > p->await) {
-
+         
 	        return dier(p);
         }
 		sem_post(p->w);
