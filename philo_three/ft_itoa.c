@@ -14,9 +14,9 @@ static char *ft_putnbr(char *table , int n)
 {
 	int	length;
 	int nn;
-    int fd;
+	int fd;
 
-    fd = 0;
+	fd = 0;
 	length = 1;
 	nn = n;
 	while ((nn /= 10))
@@ -27,7 +27,7 @@ static char *ft_putnbr(char *table , int n)
 		n = (n % length);
 		length /= 10;
 	}
-    table[fd] = 0;
+	table[fd] = 0;
 	return table;
 }
 

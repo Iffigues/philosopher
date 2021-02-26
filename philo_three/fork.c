@@ -1,16 +1,29 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fork.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 13:39:45 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/02 15:55:15 by bordenoy         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   fork.c											 :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: bordenoy <marvin@42.fr>					+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2021/02/01 13:39:45 by bordenoy		  #+#	#+#			 */
+/*   Updated: 2021/02/26 13:47:42 by bordenoy         ###   ########.fr       */
+/*																			*/
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
+
+void	sem_name(int i, char *b) {
+	char *t;
+	int k;
+
+	k = 0;
+	t = ft_itoa(i);
+	b[k++] = 'p';
+	b[k++] = '_';
+	while (*t)
+		b[k++] = *t++;
+	b[k] = 0;
+}
 
 void	take_fork(t_philosophe *t)
 {
@@ -28,5 +41,5 @@ void	take_fork(t_philosophe *t)
 	sem_post(t->table->fork);
 	await(t->table->tts);
 	message(t, " is sleeping\n", micros() - t->table->start);
-    message(t, " is thinking\n", micros() - t->table->start);
+	message(t, " is thinking\n", micros() - t->table->start);
 }

@@ -4,7 +4,6 @@
 typedef struct		s_philosophe {
 	struct s_table	*table;
 	int				id;
-    char            *sem_name;
 	int				position;
 	int				eat;
 	long			await;
@@ -33,8 +32,9 @@ typedef struct			s_table
 }						t_table;
 
 void		message(t_philosophe *e, char *b, long h);
-void take_fork(t_philosophe *t);
+void		take_fork(t_philosophe *t);
 void		routine(t_table *table);
 void		routine_me(t_table *table);
 void		*routines(void *p);
+void		sem_name(int i, char *b);
 #endif
