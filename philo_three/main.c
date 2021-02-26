@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:42:36 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 13:47:20 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:03:16 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_philosophe		*make_philo(t_table *table)
 		fork[i].id = i + 1;
 		sem_name(i + 1, m);
 		sem_unlink(m);
-		fork[i].w = sem_open(fork[i].sem_name, O_CREAT | O_EXCL, 0644,1);
+		fork[i].w = sem_open(m, O_CREAT | O_EXCL, 0644,1);
 		fork[i].table = table;
 		fork[i].eat = 0;
 		i++;
