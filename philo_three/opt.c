@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   opt.c											  :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: bordenoy <marvin@42.fr>					+#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2021/02/01 13:40:18 by bordenoy		  #+#	#+#			 */
-/*   Updated: 2021/02/26 12:36:54 by bordenoy         ###   ########.fr       */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   opt.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/26 15:08:09 by bordenoy          #+#    #+#             */
+/*   Updated: 2021/02/26 15:09:04 by bordenoy         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
@@ -43,7 +43,7 @@ t_table		*make_opt(int argc, char **argv)
 	{
 		l->me = ft_atoi(argv[5]);
 		sem_unlink("eat");
-		l->eat = sem_open("eat", O_CREAT | O_EXCL, 0644,l->nb);
+		l->eat = sem_open("eat", O_CREAT | O_EXCL, 0644, l->nb);
 	}
 	if (opt_verif(l, argc) == 0)
 		return (NULL);

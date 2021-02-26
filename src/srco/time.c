@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:23:45 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/02 14:16:19 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/26 16:17:55 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ long	micros(void)
 	struct timeval e;
 
 	gettimeofday(&e, NULL);
-	//return e.tv_sec * 1000000 + e.tv_usec;
-	//return ((e.tv_sec * (uint64_t)1000) + (e.tv_usec / 1000));
 	return (e.tv_sec * 1000L + e.tv_usec / 1000L);
-	return ((e.tv_usec) / 1000. + (e.tv_sec) * 1000.);
 }
 
 void await(unsigned int y)
@@ -37,7 +34,7 @@ void await(unsigned int y)
 		gettimeofday(&j, NULL);
 		if ((size_t)(((size_t)(j.tv_sec - h.tv_sec)) * 1000000 +
 ((size_t)(j.tv_usec - h.tv_usec))) > y)
-		return;
+			return ;
 	}
 	return ;
 }

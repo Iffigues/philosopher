@@ -6,17 +6,16 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:40:03 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/02 16:26:40 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/26 17:21:11 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philosopher.h"
-#include <unistd.h>
 
-static int ft_putnbr(t_table *table , long n, int fd)
+static int	ft_putnbr(t_table *table, long n, int fd)
 {
-	long		length;
-	long nn;
+	long	length;
+	long	nn;
 
 	length = 1;
 	nn = n;
@@ -28,33 +27,36 @@ static int ft_putnbr(t_table *table , long n, int fd)
 		n = (n % length);
 		length /= 10;
 	}
-	return fd;
+	return (fd);
 }
 
-static int ft_addchar(t_table *t, char tt, int i){
+static int	ft_addchar(t_table *t, char tt, int i)
+{
 	t->b[i] = tt;
-	return i + 1;
+	return (i + 1);
 }
 
-static int ft_addStr(t_table *t, char *tt, int i) {
-	while(*tt)
+static int	ft_addstr(t_table *t, char *tt, int i)
+{
+	while (*tt)
 		t->b[i++] = *tt++;
-	return i;
+	return (i);
 }
 
-void message(t_philosophe *e, char *t, long h)
+void	message(t_philosophe *e, char *t, long h)
 {
 	int i;
 
 	sem_wait(e->table->message);
-		if (e->table->died) {
-			i = ft_putnbr(e->table, h,0);
-			i = ft_addchar(e->table,' ',i);
-			i = ft_putnbr(e->table, e->id, i);
-			i = ft_addStr(e->table, t, i);
-			write(1, e->table->b, i);
-			if (t[1] == 'd' || t[1] == 'f')
-				e->table->died = 0;
-		}
+	if (e->table->died)
+	{
+		i = ft_putnbr(e->table, h, 0);
+		i = ft_addchar(e->table, ' ', i);
+		i = ft_putnbr(e->table, e->id, i);
+		i = ft_addstr(e->table, t, i);
+		write(1, e->table->b, i);
+		if (t[1] == 'd' || t[1] == 'f')
+			e->table->died = 0;
+	}
 	sem_post(e->table->message);
 }

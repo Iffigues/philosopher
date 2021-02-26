@@ -6,13 +6,13 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:42:36 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 14:03:16 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:59:41 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
-static sem_t	*make_fork(t_table *table)
+static sem_t		*make_fork(t_table *table)
 {
 	sem_unlink("fork");
 	table->fork = sem_open("fork", O_CREAT | O_EXCL, 0644, table->nb);
@@ -29,7 +29,7 @@ static sem_t	*make_fork(t_table *table)
 	return (table->fork);
 }
 
-static t_philosophe		*make_philo(t_table *table)
+static t_philosophe	*make_philo(t_table *table)
 {
 	t_philosophe	*fork;
 	int				i;
@@ -44,7 +44,7 @@ static t_philosophe		*make_philo(t_table *table)
 		fork[i].id = i + 1;
 		sem_name(i + 1, m);
 		sem_unlink(m);
-		fork[i].w = sem_open(m, O_CREAT | O_EXCL, 0644,1);
+		fork[i].w = sem_open(m, O_CREAT | O_EXCL, 0644, 1);
 		fork[i].table = table;
 		fork[i].eat = 0;
 		i++;
@@ -52,7 +52,7 @@ static t_philosophe		*make_philo(t_table *table)
 	return (fork);
 }
 
-static int				make_table(t_table *table)
+static int			make_table(t_table *table)
 {
 	if (!(table->fork = make_fork(table)))
 	{
@@ -64,7 +64,6 @@ static int				make_table(t_table *table)
 		free(table->fork);
 		return (0);
 	}
-
 	return (1);
 }
 
@@ -85,24 +84,26 @@ static t_table			*make_tabler(t_table *table, int argc, char **argv)
 int						main(int argc, char **argv)
 {
 	t_table	*table;
-	int h;
+	int		h;
 
 	table = NULL;
 	if (!(table = make_tabler(table, argc, argv)))
 		return (-1);
-
 	h = 0;
-	if (table->me) {	
-		while (h < table->nb) {
+	if (table->me)
+	{
+		while (h < table->nb)
+		{
 			sem_wait(table->eat);
 			h++;
 		}
 		sem_post(table->dead);
 	}
-		sem_wait(table->dead);
-		sem_post(table->dead);
+	sem_wait(table->dead);
+	sem_post(table->dead);
 	h = 0;
-	while (h < table->nb) {
+	while (h < table->nb)
+	{
 		kill(table->philosofe[h++].pid, SIGKILL);
 	}
 	return (0);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/26 17:17:51 by bordenoy          #+#    #+#             */
+/*   Updated: 2021/02/26 17:20:43 by bordenoy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philosopher.h"
 
 static	int		len(int n)
@@ -10,16 +22,16 @@ static	int		len(int n)
 	return (b);
 }
 
-static char *ft_putnbr(char *table , int n)
+static char *ft_putnbr(char *table, int n)
 {
 	int	length;
 	int nn;
-    int fd;
+	int fd;
 
-    fd = 0;
+	fd = 0;
 	length = 1;
 	nn = n;
-	while ((nn /= 10))
+	while (nn /= 10)
 		length *= 10;
 	while (length != 0)
 	{
@@ -27,8 +39,8 @@ static char *ft_putnbr(char *table , int n)
 		n = (n % length);
 		length /= 10;
 	}
-    table[fd] = 0;
-	return table;
+	table[fd] = 0;
+	return (table);
 }
 
 char			*ft_itoa(int n)
@@ -40,8 +52,6 @@ char			*ft_itoa(int n)
 	c = 0;
 	i = len(n);
 	if ((b = (char *)malloc(sizeof(char) * (i + 1))))
-	{
-		return ft_putnbr(b,n);
-	}
+		return (ft_putnbr(b, n));
 	return ((void *)0);
 }
