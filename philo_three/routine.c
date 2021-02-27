@@ -17,11 +17,11 @@ static void	*dier(t_philosophe *table)
 	int i;
 
 	i = 0;
-	table->table->died = 0;
 	message(table, " died\n", micros() - table->table->start);
 	sem_post(table->w);
 	sem_post(table->table->dead);
-	return (NULL);
+	table->table->died = 0;
+    return (NULL);
 }
 
 void	*routines(void *pp)
@@ -35,14 +35,14 @@ void	*routines(void *pp)
 		sem_wait(p->w);
 		if (micros() > p->await)
 			return (dier(p));
-		sem_post(p->w);
-		if (p->table->me > 0)
+        if (p->table->me > 0)
 			if (p->eat >= p->table->me)
 			{
 				sem_post(p->table->eat);
 				p->table->died = 0;
 				return (NULL);
 			}
+		sem_post(p->w);
 	}
 	return (NULL);
 }
