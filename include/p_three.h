@@ -40,8 +40,8 @@ typedef struct		s_table
 	long			tte;
 	long			tts;
 	int				me;
-	int				pair_wait;
-	int				last_imp_wait;
+	long				pair_wait;
+	long				last_imp_wait;
 }					t_table;
 
 void				message(t_philosophe *e, char *b, long h);
