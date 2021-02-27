@@ -16,20 +16,18 @@ int	b_philo(t_philosophe *p)
 {
 	pthread_t ppid;
 
-	p->pid = fork();
-	if (p->pid != 0)
+	if ((p->pid = fork()) != 0)
 		return (0);
 	if (!(p->id & 1))
-		usleep(p->table->pair_wait);
-	if (p->id == (p->table->nb) && (p->id & 1))
-		usleep(p->table->last_imp_wait);
+		await(p->table->pair_wait);
+	if (p->id == p->table->nb && p->id & 1)
+		await(p->table->last_imp_wait);
 	if (pthread_create(&ppid, NULL, routines, p) != 0)
 		return (1);
 	pthread_detach(ppid);
 	while (p->table->died)
 		take_fork(p);
 	exit(0);
-	return (0);
 }
 
 int	start_thread(t_table *table)
