@@ -19,7 +19,6 @@ int	b_philo(t_philosophe *p)
 	p->pid = fork();
 	if (p->pid != 0)
 		return (0);
-    p->await = micros() + p->table->ttd;
 	if (!(p->id & 1))
 		usleep(p->table->pair_wait);
 	if (p->id == (p->table->nb) && (p->id & 1))
@@ -43,7 +42,7 @@ int	start_thread(t_table *table)
 	sem_wait(table->dead);
 	while (i < table->nb)
 	{
-		p = (t_philosophe*)&table->philosofe[i];
+		p = &table->philosofe[i];
 		if (table->me)
 			sem_wait(table->eat);
 		b_philo(p);
