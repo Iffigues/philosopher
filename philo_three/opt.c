@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosopher.h"
+#include "./philosopher.h"
 
 static int	opt_verif(t_table *l, int argc)
 {

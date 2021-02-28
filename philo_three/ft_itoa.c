@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosopher.h"
+#include "./philosopher.h"
 
 static	int		len(int n)
 {

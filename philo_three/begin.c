@@ -10,16 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosopher.h"
+#include "./philosopher.h"
 
 int	b_philo(t_philosophe *p)
 {
 	pthread_t ppid;
 
-	if ((p->pid = fork()) != 0)
-		return (0);
-    sem_wait(p->w);
-    sem_post(p->w);
 	if (!(p->id & 1))
 		await(p->table->pair_wait);
 	if (p->id == p->table->nb && p->id & 1)
@@ -29,7 +25,7 @@ int	b_philo(t_philosophe *p)
 	pthread_detach(ppid);
 	while (p->table->died)
 		take_fork(p);
-	exit(0);
+	return (0);
 }
 
 int	start_thread(t_table *table)
@@ -43,10 +39,13 @@ int	start_thread(t_table *table)
 	while (i < table->nb)
 	{
 		p = &table->philosofe[i];
-        sem_wait(p->w);
 		if (table->me)
 			sem_wait(table->eat);
-		b_philo(p);
+		if ((p->pid = fork()) == 0)
+			exit(b_philo(p));
+		else if (p->pid  < 0)
+			return (-1);
+        
 		i++;
 	}
 	return (0);

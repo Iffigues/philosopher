@@ -1,5 +1,5 @@
 NAME=philo_three
-SRC= $(wildcard *.c)  ../src/srcf/ft_atoi.c ../src/srcf/time.c ../src/srcf/messagef.c
+SRC= $(wildcard *.c)
 OBJ=$(SRC:.c=.o)
 CC=gcc -DDIR=3  -Wall -Wextra -Werror
 INCLUDE= -I ../

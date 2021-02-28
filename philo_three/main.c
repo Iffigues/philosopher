@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosopher.h"
+#include "./philosopher.h"
 
 static sem_t		*make_fork(t_table *table)
 {
@@ -89,9 +89,6 @@ int						main(int argc, char **argv)
 	table = NULL;
 	if (!(table = make_tabler(table, argc, argv)))
 		return (-1);
-    h = 0;
-    while (h < table->nb)
-        sem_post(table->philosofe[h++].w);
 	h = 0;
 	if (table->me)
 	{

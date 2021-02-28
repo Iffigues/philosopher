@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosopher.h"
+#include "./philosopher.h"
 
 void	sem_name(int i, char *b)
 {
