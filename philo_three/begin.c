@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:41:44 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 15:05:33 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:43:18 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ int	start_thread(t_table *table)
 			sem_wait(table->eat);
 		if ((p->pid = fork()) == 0)
 			exit(b_philo(p));
-		else if (p->pid  < 0)
+		else if (p->pid < 0)
 			return (-1);
-        
 		i++;
 	}
 	return (0);

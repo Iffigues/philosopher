@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:42:36 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 14:59:41 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:48:53 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int			make_table(t_table *table)
 	return (1);
 }
 
-static t_table			*make_tabler(t_table *table, int argc, char **argv)
+static t_table		*make_tabler(t_table *table, int argc, char **argv)
 {
 	if (!(table = (make_opt(argc, argv))))
 	{
@@ -81,7 +81,7 @@ static t_table			*make_tabler(t_table *table, int argc, char **argv)
 	return (table);
 }
 
-int						main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
 	t_table	*table;
 	int		h;

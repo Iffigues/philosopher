@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:41:22 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 15:36:25 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:39:03 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static void	*dier(t_philosophe *table)
 	sem_post(table->w);
 	sem_post(table->table->dead);
 	table->table->died = 0;
-    return (NULL);
+	return (NULL);
 }
 
-void	*routines(void *pp)
+void		*routines(void *pp)
 {
 	t_philosophe *p;
 
@@ -35,7 +35,7 @@ void	*routines(void *pp)
 		sem_wait(p->w);
 		if (micros() > p->await)
 			return (dier(p));
-        if (p->table->me > 0)
+		if (p->table->me > 0)
 			if (p->eat >= p->table->me)
 			{
 				sem_post(p->table->eat);
@@ -43,8 +43,7 @@ void	*routines(void *pp)
 				return (NULL);
 			}
 		sem_post(p->w);
-        usleep(1000);
+		usleep(1000);
 	}
 	return (NULL);
 }
-

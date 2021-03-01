@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:40:03 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 15:45:22 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:46:33 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_addstr(t_table *t, char *tt, int i)
 	return (i);
 }
 
-void	message(t_philosophe *e, char *t, long h)
+void		message(t_philosophe *e, char *t, long h)
 {
 	int i;
 

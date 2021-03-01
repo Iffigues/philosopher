@@ -6,13 +6,13 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 15:06:09 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 15:07:25 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:45:30 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philosopher.h"
 
-static	int		len(int n)
+static int	len(int n)
 {
 	int	b;
 
@@ -43,7 +43,7 @@ static char	*ft_putnbr(char *table, int n)
 	return (table);
 }
 
-char			*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	char	*b;
 	int		i;
