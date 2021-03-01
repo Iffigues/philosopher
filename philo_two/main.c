@@ -13,9 +13,9 @@
 #include "../include/philosopher.h"
 
 static char *sem_name(int i) {
-	char *t;
-	char *p;
-	int ii;
+	char	*t;
+	char	*p;
+	int		ii;
 
 	ii = 0;
 	p = NULL;
@@ -32,16 +32,16 @@ static char *sem_name(int i) {
 	{
 		p[ii + 2] = t[ii];
 		ii++;
-	 }
-	p[2+ii] = 0;
+	}
+	p[2 + ii] = 0;
 	free(t);
-	return p;
+	return (p);
 }
 
 static t_philosophe		*make_philo(t_table *table)
 {
-	t_philosophe *fork;
-	int i;
+	t_philosophe	*fork;
+	int				i;
 
 	i = 0;
 	fork = NULL;
@@ -83,7 +83,6 @@ static int				make_table(t_table *table)
 		free(table->fork);
 		return (0);
 	}
-
 	return (1);
 }
 
@@ -104,7 +103,7 @@ static t_table			*make_tabler(t_table *table, int argc, char **argv)
 int						main(int argc, char **argv)
 {
 	t_table	*table;
-	int h;
+	int		h;
 
 	table = NULL;
 	if (!(table = make_tabler(table, argc, argv)))
@@ -118,7 +117,8 @@ int						main(int argc, char **argv)
 	while (table->nb)
 	{
 		h = 0;
-		while (h < table->ns) {
+		while (h < table->ns)
+		{
 			sem_post(table->fork);
 			h++;
 		}
