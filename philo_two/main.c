@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:39:32 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/02 16:16:17 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:58:32 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,79 +14,77 @@
 
 static sem_t	*make_fork(t_table *table)
 {
-    sem_unlink("fork");
-	table->fork = sem_open("fork", O_CREAT | O_EXCL, 0644,table->nb);
+	sem_unlink("fork");
+	table->fork = sem_open("fork", O_CREAT | O_EXCL, 0644, table->nb);
 	if (!table->fork)
 		return (NULL);
-    sem_unlink("dead");
-    table->dead = sem_open("dead", O_CREAT | O_EXCL, 0644, 1);
+	sem_unlink("dead");
+	table->dead = sem_open("dead", O_CREAT | O_EXCL, 0644, 1);
 	if (!table->dead)
 		return (NULL);
-
-    sem_unlink("message");
-    table->message = sem_open("message", O_CREAT | O_EXCL, 0644,1);
+	sem_unlink("message");
+	table->message = sem_open("message", O_CREAT | O_EXCL, 0644, 1);
 	if (!table->message)
 		return (NULL);
-
 	return (table->fork);
 }
 
 static char *sem_name(int i) {
-    char *t;
-    char *p;
-    int ii;
+	char *t;
+	char *p;
+	int ii;
 
-    ii = 0;
-    p = NULL;
-    if (!(t = ft_itoa(i)))
-        return (NULL);
-    if(!(p = (char *)malloc(sizeof(char) * 3 + ft_strlen(t))))
-    {
-        free(t);
-        return NULL;
-    }
-    p[0] = 'p';
-    p[1] = '_';
-    while (t[ii])
-    {
-        p[ii + 2] = t[ii];
-        ii++;
-     }
-    p[2+ii] = 0;
-    free(t);
-    return p;
+	ii = 0;
+	p = NULL;
+	if (!(t = ft_itoa(i)))
+		return (NULL);
+	if (!(p = (char *)malloc(sizeof(char) * 3 + ft_strlen(t))))
+	{
+		free(t);
+		return (NULL);
+	}
+	p[0] = 'p';
+	p[1] = '_';
+	while (t[ii])
+	{
+		p[ii + 2] = t[ii];
+		ii++;
+	 }
+	p[2+ii] = 0;
+	free(t);
+	return p;
 }
 
 static t_philosophe		*make_philo(t_table *table)
 {
 	t_philosophe *fork;
-    int i;
+	int i;
 
-    i = 0;
+	i = 0;
 	fork = NULL;
 	if (!(fork = (t_philosophe *)malloc(sizeof(t_philosophe) * table->nb)))
 		return (NULL);
-    while (i < table->nb)
-    {
-        fork[i].id = i + 1;
-        if (!(fork[i].sem_name = sem_name(i + 1)))
-        {
-            if (i != 0)
-            {
-                while (i >= 0)
-                {
-                    free(fork[i--].sem_name);
-                    free(fork);
-                    return NULL;
-                }
-            }
-        }
-        sem_unlink(fork[i].sem_name);
-         fork[i].w = sem_open(fork[i].sem_name, O_CREAT | O_EXCL, 0644,1);
-        fork[i].table = table;
-        fork[i].eat = 0;
-        i++;
-    }
+	while (i < table->nb)
+	{
+		fork[i].id = i + 1;
+		if (!(fork[i].sem_name = sem_name(i + 1)))
+		{
+			if (i != 0)
+			{
+				while (i >= 0)
+				{
+					free(fork[i--].sem_name);
+					free(fork);
+					return (NULL);
+				}
+			}
+		}
+		sem_unlink(fork[i].sem_name);
+		fork[i].w = sem_open(fork[i].sem_name, O_CREAT | O_EXCL, 0644, 1);
+		fork[i].table = table;
+		fork[i].eat = 0;
+		i++;
+	}
 	return (fork);
 }
 
@@ -123,24 +121,24 @@ static t_table			*make_tabler(t_table *table, int argc, char **argv)
 int						main(int argc, char **argv)
 {
 	t_table	*table;
-    int h;
+	int h;
 
 	table = NULL;
 	if (!(table = make_tabler(table, argc, argv)))
 		return (-1);
-    if (table->me)
+	if (table->me)
 		routine_me(table);
 	else
 		routine(table);
 	sem_wait(table->dead);
 	sem_post(table->dead);
-    while (table->nb)
+	while (table->nb)
 	{
 		h = 0;
 		while (h < table->ns) {
 			sem_post(table->fork);
-            h++;
-        }
+			h++;
+		}
 	}
 	return (0);
 }
