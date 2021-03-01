@@ -25,6 +25,7 @@
 # include <sys/stat.h>
 # include <semaphore.h>
 # include <signal.h>
+struct		s_table;
 typedef struct		s_philosophe
 {
 	struct s_table	*table;
