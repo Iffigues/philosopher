@@ -12,23 +12,6 @@
 
 #include "../include/philosopher.h"
 
-static sem_t	*make_fork(t_table *table)
-{
-	sem_unlink("fork");
-	table->fork = sem_open("fork", O_CREAT | O_EXCL, 0644, table->nb);
-	if (!table->fork)
-		return (NULL);
-	sem_unlink("dead");
-	table->dead = sem_open("dead", O_CREAT | O_EXCL, 0644, 1);
-	if (!table->dead)
-		return (NULL);
-	sem_unlink("message");
-	table->message = sem_open("message", O_CREAT | O_EXCL, 0644, 1);
-	if (!table->message)
-		return (NULL);
-	return (table->fork);
-}
-
 static char *sem_name(int i) {
 	char *t;
 	char *p;
