@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 17:16:45 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/03/02 13:52:29 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 16:44:53 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	dier(t_table *table, int i)
 {
-	table->died = 0;
+	//table->died = 0;
 	message(&table->philosofe[i], " died\n", micros() - table->start);
 	pthread_mutex_unlock(&table->philosofe[i].w);
 	pthread_mutex_unlock(&table->dead);
