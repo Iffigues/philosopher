@@ -12,36 +12,25 @@
 
 #include "../include/philosopher.h"
 
-static char *sem_name(int i) {
+void	sem_name(int i, char *b)
+{
 	char	*t;
-	char	*p;
-	int		ii;
+	int		k;
 
-	ii = 0;
-	p = NULL;
-	if (!(t = ft_itoa(i)))
-		return (NULL);
-	if (!(p = (char *)malloc(sizeof(char) * 3 + ft_strlen(t))))
-	{
-		free(t);
-		return (NULL);
-	}
-	p[0] = 'p';
-	p[1] = '_';
-	while (t[ii])
-	{
-		p[ii + 2] = t[ii];
-		ii++;
-	}
-	p[2 + ii] = 0;
-	free(t);
-	return (p);
+	k = 0;
+	t = ft_itoa(i);
+	b[k++] = 'p';
+	b[k++] = '_';
+	while (*t)
+		b[k++] = *t++;
+	b[k] = 0;
 }
 
-static t_philosophe		*make_philo(t_table *table)
+static t_philosophe	*make_philo(t_table *table)
 {
 	t_philosophe	*fork;
 	int				i;
+	char			m[6];
 
 	i = 0;
 	fork = NULL;
@@ -50,20 +39,9 @@ static t_philosophe		*make_philo(t_table *table)
 	while (i < table->nb)
 	{
 		fork[i].id = i + 1;
-		if (!(fork[i].sem_name = sem_name(i + 1)))
-		{
-			if (i != 0)
-			{
-				while (i >= 0)
-				{
-					free(fork[i--].sem_name);
-					free(fork);
-					return (NULL);
-				}
-			}
-		}
-		sem_unlink(fork[i].sem_name);
-		fork[i].w = sem_open(fork[i].sem_name, O_CREAT | O_EXCL, 0644, 1);
+		sem_name(i + 1, m);
+		sem_unlink(m);
+		fork[i].w = sem_open(m, O_CREAT | O_EXCL, 0644, 1);
 		fork[i].table = table;
 		fork[i].eat = 0;
 		i++;
