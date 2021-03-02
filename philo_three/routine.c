@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:41:22 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/03/02 17:20:12 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:39:03 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		*routines(void *pp)
 				return (NULL);
 			}
 		sem_post(p->w);
-		//usleep(1000);
+		usleep(1000);
 	}
 	return (NULL);
 }

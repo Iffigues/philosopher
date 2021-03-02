@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:42:36 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/03/01 16:48:53 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 15:32:32 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static t_table		*make_tabler(t_table *table, int argc, char **argv)
 	if (!(make_table(table)))
 		return (NULL);
 	if (start_thread(table))
-		return (NULL);
+		return (table);
 	return (table);
 }
 
@@ -89,9 +89,6 @@ int					main(int argc, char **argv)
 	table = NULL;
 	if (!(table = make_tabler(table, argc, argv)))
 		return (-1);
-    h = 0;
-    while (h < table->nb)
-        sem_post(table->philosofe[h++].w);
 	h = 0;
 	if (table->me)
 	{
