@@ -6,11 +6,40 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 12:41:44 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/03/01 16:43:18 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 17:24:20 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philosopher.h"
+
+
+
+static void ft_swap(t_table *table)
+{
+        int i;
+        int u;
+        int j;
+
+        j = table->nb;
+        if (table->nb & 1)
+                o--;
+        u = 0;
+        i = 0;
+        while (i < o)
+        {
+                y[u] = i + 1;
+                u++;
+                i += 2;
+        }
+        i = 1;
+        while (i < o)
+        {
+                y[u] = i + 1;
+                u++;
+                i +=2;
+        }
+}
+
 
 int	b_philo(t_philosophe *p)
 {

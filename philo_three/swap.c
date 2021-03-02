@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 17:02:47 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/03/02 17:19:10 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 17:20:38 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,3 @@ void ft_swap(int *y,  int o)
 	}
 }
 
-int main()
-{
-	int i[SIZE] = {1,2,3,4,5};
-	ft_swap(i, SIZE);
-	for (int o = 0; o < SIZE; o++) {
-		printf("%d\n", i[o]);
-	}
-}
