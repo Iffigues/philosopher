@@ -89,6 +89,9 @@ int					main(int argc, char **argv)
 	table = NULL;
 	if (!(table = make_tabler(table, argc, argv)))
 		return (-1);
+    h = 0;
+    while (h < table->nb)
+        sem_post(table->philosofe[h++].w);
 	h = 0;
 	if (table->me)
 	{
