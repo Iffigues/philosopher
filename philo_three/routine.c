@@ -43,7 +43,7 @@ void		*routines(void *pp)
 				return (NULL);
 			}
 		sem_post(p->w);
-	//	usleep(1000);
+		//usleep(1000);
 	}
 	return (NULL);
 }
