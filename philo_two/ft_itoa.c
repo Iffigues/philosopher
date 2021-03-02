@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 17:17:51 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 17:20:43 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 13:14:49 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static	int		len(int n)
 	return (b);
 }
 
-static char *ft_putnbr(char *table, int n)
+static char		*ft_putnbr(char *table, int n)
 {
 	int	length;
 	int nn;

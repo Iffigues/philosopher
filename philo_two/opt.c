@@ -6,13 +6,13 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:40:18 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/01 13:40:20 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 13:16:50 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
-sem_t	*make_fork(t_table *table)
+sem_t		*make_fork(t_table *table)
 {
 	sem_unlink("fork");
 	table->fork = sem_open("fork", O_CREAT | O_EXCL, 0644, table->nb);

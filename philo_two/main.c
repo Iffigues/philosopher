@@ -6,13 +6,13 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:39:32 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/03/01 16:58:32 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 13:59:25 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
-void	sem_name(int i, char *b)
+void				sem_name(int i, char *b)
 {
 	char	*t;
 	int		k;
@@ -49,7 +49,7 @@ static t_philosophe	*make_philo(t_table *table)
 	return (fork);
 }
 
-static int				make_table(t_table *table)
+static int			make_table(t_table *table)
 {
 	if (!(table->fork = make_fork(table)))
 	{
@@ -64,7 +64,7 @@ static int				make_table(t_table *table)
 	return (1);
 }
 
-static t_table			*make_tabler(t_table *table, int argc, char **argv)
+static t_table		*make_tabler(t_table *table, int argc, char **argv)
 {
 	if (!(table = (make_opt(argc, argv))))
 	{
@@ -78,7 +78,7 @@ static t_table			*make_tabler(t_table *table, int argc, char **argv)
 	return (table);
 }
 
-int						main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
 	t_table	*table;
 	int		h;
@@ -92,14 +92,13 @@ int						main(int argc, char **argv)
 		routine(table);
 	sem_wait(table->dead);
 	sem_post(table->dead);
-	while (table->nb)
+	h = 0;
+	while (h < table->ns)
 	{
-		h = 0;
-		while (h < table->ns)
-		{
-			sem_post(table->fork);
-			h++;
-		}
+		sem_wait(table->fork);
+		h++;
 	}
-	return (0);
+	usleep(10000);
+
+	return (free_tables(table));
 }

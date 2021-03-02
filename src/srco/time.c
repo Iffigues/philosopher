@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:23:45 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 16:17:55 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:39:24 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long	micros(void)
 	return (e.tv_sec * 1000L + e.tv_usec / 1000L);
 }
 
-void await(unsigned int y)
+void	await(unsigned int y)
 {
 	struct timeval h;
 	struct timeval j;

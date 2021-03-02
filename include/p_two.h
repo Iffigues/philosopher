@@ -6,7 +6,7 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 16:40:32 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 16:43:54 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:28:12 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ typedef struct		s_table
 	int				last_imp_wait;
 }					t_table;
 
-sem_t               *make_fork(t_table *table);
+int					free_tables(t_table *e);
+sem_t				*make_fork(t_table *table);
 void				message(t_philosophe *e, char *b, long h);
 void				take_fork(t_philosophe *t);
 void				routine(t_table *table);

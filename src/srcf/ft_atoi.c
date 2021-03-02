@@ -6,11 +6,11 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 14:10:13 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/02 16:15:43 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:31:18 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static	int	good(int a, char c, int d)
+static int		good(int a, char c, int d)
 {
 	if (214748364 == a)
 	{
@@ -22,7 +22,7 @@ static	int	good(int a, char c, int d)
 	return (1);
 }
 
-int			ft_atoi(const char *str)
+int				ft_atoi(const char *str)
 {
 	int nbr;
 	int s;
@@ -42,7 +42,7 @@ int			ft_atoi(const char *str)
 	return (nbr * s);
 }
 
-int	ft_strlen(char *a)
+int				ft_strlen(char *a)
 {
 	int i;
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 13:15:31 by bordenoy          #+#    #+#             */
+/*   Updated: 2021/03/02 13:55:49 by bordenoy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philosopher.h"
 
 static void	dier(t_table *table, int i)
@@ -9,6 +21,7 @@ static void	dier(t_table *table, int i)
 
 static void	fully(t_table *table)
 {
+	table->died = 0;
 	message(&table->philosofe[0], " full\n", micros() - table->start);
 	sem_post(table->dead);
 }

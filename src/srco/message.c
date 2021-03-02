@@ -6,13 +6,13 @@
 /*   By: bordenoy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:40:03 by bordenoy          #+#    #+#             */
-/*   Updated: 2021/02/26 16:15:55 by bordenoy         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:40:40 by bordenoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philosopher.h"
 
-static int	ft_putnbr(t_table *table, long n, int fd)
+static int		ft_putnbr(t_table *table, long n, int fd)
 {
 	long	length;
 	long	nn;
@@ -30,20 +30,20 @@ static int	ft_putnbr(t_table *table, long n, int fd)
 	return (fd);
 }
 
-static int	ft_addchar(t_table *t, char tt, int i)
+static int		ft_addchar(t_table *t, char tt, int i)
 {
 	t->b[i] = tt;
 	return (i + 1);
 }
 
-static int	ft_addstr(t_table *t, char *tt, int i)
+static int		ft_addstr(t_table *t, char *tt, int i)
 {
 	while (*tt)
 		t->b[i++] = *tt++;
 	return (i);
 }
 
-void	message(t_philosophe *e, char *t, long h)
+void			message(t_philosophe *e, char *t, long h)
 {
 	int i;
 
