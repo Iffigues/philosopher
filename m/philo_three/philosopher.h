@@ -73,4 +73,5 @@ long				micros(void);
 void				start(t_table table);
 void				m(t_philosophe *e, char *b, int h);
 char				*ft_itoa(int n);
+int					free_tables(t_table *table);
 #endif

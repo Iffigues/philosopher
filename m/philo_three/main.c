@@ -106,5 +106,5 @@ int					main(int argc, char **argv)
 	{
 		kill(table->philosofe[h++].pid, SIGKILL);
 	}
-	return (0);
+	return (free_tables(table));
 }
