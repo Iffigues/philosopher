@@ -99,6 +99,5 @@ int					main(int argc, char **argv)
 		h++;
 	}
 	usleep(10000);
-
 	return (free_tables(table));
 }
