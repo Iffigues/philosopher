@@ -1,0 +1,3 @@
+ 6030 s000  S+     0:00.01 sh kill.sh yes
+ 6032 s000  S+     0:00.00 grep yes
+ 6023 s001  S+     0:00.64 yes
