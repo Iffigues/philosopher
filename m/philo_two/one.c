@@ -17,7 +17,6 @@ int	free_tables(t_table *table)
 	int i;
 
 	i = 0;
-	//free(table->fork);
 	free(table->philosofe);
 	free(table);
 	return (0);
